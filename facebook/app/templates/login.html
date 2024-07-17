@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link href="{{ url_for('static', filename='images/icons/facebook.ico')}}" rel="shortcut icon" type="image/x-icon" />
+    <link href="{{ url_for('static', filename='css/login.css')}}" rel="stylesheet" />
+    <title>Login</title>
+
+</head>
+
+<body>
+    <div class="logo">
+        <img alt="" src="{{url_for('static', filename = 'images/facebook-long.svg')}}" />
+        <h2 class="h2">Facebook helps you connect and share with the people in your life.</h2>
+    </div>
+    <div class="form">
+        <form class="form1">
+            <div class="input_1">
+                <input id="email" name="email" placeholder="Email address or phone number" type="text" />
+                <input id="password" name="password" placeholder="Password" type="password" />
+                <button class="login">Log in</button>
+                <div class="bottom">
+                    <div class="fpword-container">
+                        <a class="fpword" id="fpword">Forgotten password?</a>
+                    </div>
+                </div>
+                <button class="create" id="create" type="button">Create new account</button>
+            </div>
+        </form>
+    </div>
+    <div class="modal" id="modal">
+        <div class="modal-cont">
+            <div class="reg-form">
+                <div class="regbox1">
+                    <img alt="" class="close-icon" id="close-icon"
+                        src="{{url_for('static', filename = 'images/icons/closeIcon.png')}}" />
+                    <div class="modtext1">Sign Up</div>
+                    <div class="modtext2">It's quick and easy.</div>
+                </div>
+                <form action="#" class="form2">
+                    <div class="input_2">
+                        <div class="modbox1">
+                            <input class="type1" id="firstname" name="firstname" placeholder="First name" type="text" />
+                            <input class="type1" id="lastname" name="lastname" placeholder="Surname" type="text" />
+                        </div>
+                        <input class="type2" id="email" name="email" placeholder="Mobile number or email address"
+                            type="email" />
+                        <input class="type2" id="password" name="password" placeholder="New password" type="password" />
+                        <div>
+                            <label class="label1" for="age">Age
+
+                                <i class="questionIcon"></i>
+                            </label>
+                            <input class="age" id="age" name="age" type="number" />
+                        </div>
+                        <div>
+                            <label class="label1" for="gender">Gender
+
+                                <i class="questionIcon"></i>
+                            </label>
+                            <div class="modbox2">
+                                <div class="radio">
+                                    <label for="male">Male</label>
+                                    <input id="male" name="gender" type="radio" value="male" />
+                                </div>
+                                <div class="radio">
+                                    <label for="female">Female</label>
+                                    <input id="female" name="gender" type="radio" value="female" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modbox3">
+                            <button class="button1">Sign Up</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal2">
+        <div class="modal-cont">
+            <div class="reg-form">
+                <div class="regbox1">
+                    <img alt="" class="close-icon" id="close-icon2"
+                        src="{{url_for('static', filename = 'images/icons/closeIcon.png')}}" />
+                    <div class="modtext1">Set Password</div>
+                    <div class="modtext2">Get a new password.</div>
+                </div>
+                <form action="#" class="form2">
+                    <div class="input_2">
+                        <input class="type2" id="email" name="email" placeholder="Mobile number or email address"
+                            type="email" />
+                        <input class="type2" id="password" name="password" placeholder="New password" type="password" />
+                        <input class="type2" id="cpassword" name="cpassword" placeholder="Confirm password"
+                            type="password" />
+                        <div class="modbox3">
+                            <button class="button1">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+
+
+
+        const create = document.getElementById('create')
+
+        const fpword = document.getElementById('fpword')
+
+        const modal = document.getElementById('modal')
+
+        const modal2 = document.getElementById('modal2')
+
+        const closeIcon = document.getElementById('close-icon')
+
+        const closeIcon2 = document.getElementById('close-icon2')
+
+        create.addEventListener('click', () => {
+
+            modal.classList.add('show')
+
+        })
+
+        closeIcon.addEventListener('click', () => {
+
+            modal.classList.remove('show')
+
+        })
+
+        fpword.addEventListener('click', () => {
+
+            modal2.classList.add('show')
+
+        })
+
+        closeIcon2.addEventListener('click', () => {
+
+            modal2.classList.remove('show')
+
+        })
+
+
+
+    </script>
+</body>
+
+</html>

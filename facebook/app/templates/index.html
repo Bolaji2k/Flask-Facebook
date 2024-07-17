@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clone</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/icons/facebook.ico')}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+
+</head>
+
+<body>
+    <div class="grid_container">
+        <div class="header">
+            <div class="header-left">
+                <svg viewBox="0 0 36 36" style="color:#0866FF;" fill="currentColor" height="40" width="40">
+                    <path
+                        d="M20.181 35.87C29.094 34.791 36 27.202 36 18c0-9.941-8.059-18-18-18S0 8.059 0 18c0 8.442 5.811 15.526 13.652 17.471L14 34h5.5l.681 1.87Z">
+                    </path>
+                    <path style="color:white;"
+                        d="M13.651 35.471v-11.97H9.936V18h3.715v-2.37c0-6.127 2.772-8.964 8.784-8.964 1.138 0 3.103.223 3.91.446v4.983c-.425-.043-1.167-.065-2.081-.065-2.952 0-4.09 1.116-4.09 4.025V18h5.883l-1.008 5.5h-4.867v12.37a18.183 18.183 0 0 1-6.53-.399Z">
+                    </path>
+                </svg>
+                <div class="search">
+                    <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" style="color: #65676B;">
+                        <g fill-rule="evenodd" transform="translate(-448 -544)">
+                            <g fill-rule="nonzero">
+                                <path
+                                    d="M10.743 2.257a6 6 0 1 1-8.485 8.486 6 6 0 0 1 8.485-8.486zm-1.06 1.06a4.5 4.5 0 1 0-6.365 6.364 4.5 4.5 0 0 0 6.364-6.363z"
+                                    transform="translate(448 544)"></path>
+                                <path
+                                    d="M10.39 8.75a2.94 2.94 0 0 0-.199.432c-.155.417-.23.849-.172 1.284.055.415.232.794.54 1.103a.75.75 0 0 0 1.112-1.004l-.051-.057a.39.39 0 0 1-.114-.24c-.021-.155.014-.356.09-.563.031-.081.06-.145.08-.182l.012-.022a.75.75 0 1 0-1.299-.752z"
+                                    transform="translate(448 544)"></path>
+                                <path
+                                    d="M9.557 11.659c.038-.018.09-.04.15-.064.207-.077.408-.112.562-.092.08.01.143.034.198.077l.041.036a.75.75 0 0 0 1.06-1.06 1.881 1.881 0 0 0-1.103-.54c-.435-.058-.867.018-1.284.175-.189.07-.336.143-.433.2a.75.75 0 0 0 .624 1.356l.066-.027.12-.061z"
+                                    transform="translate(448 544)"></path>
+                                <path
+                                    d="m13.463 15.142-.04-.044-3.574-4.192c-.599-.703.355-1.656 1.058-1.057l4.191 3.574.044.04c.058.059.122.137.182.24.249.425.249.96-.154 1.41l-.057.057c-.45.403-.986.403-1.411.154a1.182 1.182 0 0 1-.24-.182zm.617-.616.444-.444a.31.31 0 0 0-.063-.052c-.093-.055-.263-.055-.35.024l.208.232.207-.206.006.007-.22.257-.026-.024.033-.034.025.027-.257.22-.007-.007zm-.027-.415c-.078.088-.078.257-.023.35a.31.31 0 0 0 .051.063l.205-.204-.233-.209z"
+                                    transform="translate(448 544)"></path>
+                            </g>
+                        </g>
+                    </svg>
+                    <input type="search" name="search" id="search" placeholder="Search Facebook">
+                </div>
+
+            </div>
+            <div class="header-center">
+
+                <div class="center-icon">
+
+
+                    <div class="home">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" style="color:#0866FF">
+                            <path
+                                d="M9.464 1.286C10.294.803 11.092.5 12 .5c.908 0 1.707.303 2.537.786.795.462 1.7 1.142 2.815 1.977l2.232 1.675c1.391 1.042 2.359 1.766 2.888 2.826.53 1.059.53 2.268.528 4.006v4.3c0 1.355 0 2.471-.119 3.355-.124.928-.396 1.747-1.052 2.403-.657.657-1.476.928-2.404 1.053-.884.119-2 .119-3.354.119H7.93c-1.354 0-2.471 0-3.355-.119-.928-.125-1.747-.396-2.403-1.053-.656-.656-.928-1.475-1.053-2.403C1 18.541 1 17.425 1 16.07v-4.3c0-1.738-.002-2.947.528-4.006.53-1.06 1.497-1.784 2.888-2.826L6.65 3.263c1.114-.835 2.02-1.515 2.815-1.977zM10.5 13A1.5 1.5 0 0 0 9 14.5V21h6v-6.5a1.5 1.5 0 0 0-1.5-1.5h-3z">
+                            </path>
+                        </svg>
+                        <div class="active"></div>
+
+                    </div>
+
+                    <div>
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path
+                                d="M10.996 8.132A1 1 0 0 0 9.5 9v4a1 1 0 0 0 1.496.868l3.5-2a1 1 0 0 0 0-1.736l-3.5-2z">
+                            </path>
+                            <path
+                                d="M14.573 2H9.427c-1.824 0-3.293 0-4.45.155-1.2.162-2.21.507-3.013 1.31C1.162 4.266.817 5.277.655 6.477.5 7.634.5 9.103.5 10.927v.146c0 1.824 0 3.293.155 4.45.162 1.2.507 2.21 1.31 3.012.802.803 1.813 1.148 3.013 1.31C6.134 20 7.603 20 9.427 20h5.146c1.824 0 3.293 0 4.45-.155 1.2-.162 2.21-.507 3.012-1.31.803-.802 1.148-1.813 1.31-3.013.155-1.156.155-2.625.155-4.449v-.146c0-1.824 0-3.293-.155-4.45-.162-1.2-.507-2.21-1.31-3.013-.802-.802-1.813-1.147-3.013-1.309C17.866 2 16.397 2 14.573 2zM3.38 4.879c.369-.37.887-.61 1.865-.741C6.251 4.002 7.586 4 9.5 4h5c1.914 0 3.249.002 4.256.138.978.131 1.496.372 1.865.74.37.37.61.888.742 1.866.135 1.007.137 2.342.137 4.256 0 1.914-.002 3.249-.137 4.256-.132.978-.373 1.496-.742 1.865-.369.37-.887.61-1.865.742-1.007.135-2.342.137-4.256.137h-5c-1.914 0-3.249-.002-4.256-.137-.978-.132-1.496-.373-1.865-.742-.37-.369-.61-.887-.741-1.865C2.502 14.249 2.5 12.914 2.5 11c0-1.914.002-3.249.138-4.256.131-.978.372-1.496.74-1.865zM8 21.5a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2H8z">
+                            </path>
+                        </svg><span></span>
+                    </div>
+
+                    <div>
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path
+                                d="M1.588 3.227A3.125 3.125 0 0 1 4.58 1h14.84c1.38 0 2.597.905 2.993 2.227l.816 2.719a6.47 6.47 0 0 1 .272 1.854A5.183 5.183 0 0 1 22 11.455v4.615c0 1.355 0 2.471-.119 3.355-.125.928-.396 1.747-1.053 2.403-.656.657-1.475.928-2.403 1.053-.884.12-2 .119-3.354.119H8.929c-1.354 0-2.47 0-3.354-.119-.928-.125-1.747-.396-2.403-1.053-.657-.656-.929-1.475-1.053-2.403-.12-.884-.119-2-.119-3.354V11.5l.001-.045A5.184 5.184 0 0 1 .5 7.8c0-.628.092-1.252.272-1.854l.816-2.719zM10 21h4v-3.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5V21zm6-.002c.918-.005 1.608-.025 2.159-.099.706-.095 1.033-.262 1.255-.485.223-.222.39-.55.485-1.255.099-.735.101-1.716.101-3.159v-3.284a5.195 5.195 0 0 1-1.7.284 5.18 5.18 0 0 1-3.15-1.062A5.18 5.18 0 0 1 12 13a5.18 5.18 0 0 1-3.15-1.062A5.18 5.18 0 0 1 5.7 13a5.2 5.2 0 0 1-1.7-.284V16c0 1.442.002 2.424.1 3.159.096.706.263 1.033.486 1.255.222.223.55.39 1.255.485.551.074 1.24.094 2.159.1V17.5a2.5 2.5 0 0 1 2.5-2.5h3a2.5 2.5 0 0 1 2.5 2.5v3.498zM4.581 3c-.497 0-.935.326-1.078.802l-.815 2.72A4.45 4.45 0 0 0 2.5 7.8a3.2 3.2 0 0 0 5.6 2.117 1 1 0 0 1 1.5 0A3.19 3.19 0 0 0 12 11a3.19 3.19 0 0 0 2.4-1.083 1 1 0 0 1 1.5 0A3.2 3.2 0 0 0 21.5 7.8c0-.434-.063-.865-.188-1.28l-.816-2.72A1.125 1.125 0 0 0 19.42 3H4.58z">
+                            </path>
+                        </svg><span class="x10l6tqk x11f4b5y x1v4kod4"></span>
+                    </div>
+
+                    <div>
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path
+                                d="M.5 12c0 6.351 5.149 11.5 11.5 11.5S23.5 18.351 23.5 12 18.351.5 12 .5.5 5.649.5 12zm2 0c0-.682.072-1.348.209-1.99a2 2 0 0 1 0 3.98A9.539 9.539 0 0 1 2.5 12zm.84-3.912A9.502 9.502 0 0 1 12 2.5a9.502 9.502 0 0 1 8.66 5.588 4.001 4.001 0 0 0 0 7.824 9.514 9.514 0 0 1-1.755 2.613A5.002 5.002 0 0 0 14 14.5h-4a5.002 5.002 0 0 0-4.905 4.025 9.515 9.515 0 0 1-1.755-2.613 4.001 4.001 0 0 0 0-7.824zM12 5a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm-2 4a2 2 0 1 0 4 0 2 2 0 0 0-4 0zm11.291 1.01a9.538 9.538 0 0 1 0 3.98 2 2 0 0 1 0-3.98zM16.99 20.087A9.455 9.455 0 0 1 12 21.5c-1.83 0-3.54-.517-4.99-1.414a1.004 1.004 0 0 1-.01-.148V19.5a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v.438a1 1 0 0 1-.01.148z">
+                            </path>
+                        </svg><span class="x10l6tqk x11f4b5y x1v4kod4"></span>
+                    </div>
+
+                    <div class="game">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path
+                                d="M8 8a1 1 0 0 1 1 1v2h2a1 1 0 1 1 0 2H9v2a1 1 0 1 1-2 0v-2H5a1 1 0 1 1 0-2h2V9a1 1 0 0 1 1-1zm8 2a1.5 1.5 0 1 0 3 0 1.5 1.5 0 0 0-3 0zm-2 4a1.5 1.5 0 1 0 3 0 1.5 1.5 0 0 0-3 0z">
+                            </path>
+                            <path
+                                d="M.5 11a7 7 0 0 1 7-7h9a7 7 0 0 1 7 7v2a7 7 0 0 1-7 7h-9a7 7 0 0 1-7-7v-2zm7-5a5 5 0 0 0-5 5v2a5 5 0 0 0 5 5h9a5 5 0 0 0 5-5v-2a5 5 0 0 0-5-5h-9z">
+                            </path>
+                        </svg><span class="x10l6tqk x11f4b5y x1v4kod4"></span>
+                    </div>
+
+                    <div class="more-header">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path
+                                d="M3.25 2.75a1.25 1.25 0 1 0 0 2.5h17.5a1.25 1.25 0 1 0 0-2.5H3.25zM2 12c0-.69.56-1.25 1.25-1.25h17.5a1.25 1.25 0 1 1 0 2.5H3.25C2.56 13.25 2 12.69 2 12zm0 8c0-.69.56-1.25 1.25-1.25h17.5a1.25 1.25 0 1 1 0 2.5H3.25C2.56 21.25 2 20.69 2 20z">
+                            </path>
+                        </svg>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="header-right">
+
+                <div class="right-icons">
+                    <div class="right-head-plus">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"
+                            class="x19dipnz x1lliihq x1tzjh5l x1k90msu x2h7rmj x1qfuztq"
+                            style="--color:var(--primary-icon)">
+                            <path d="M11 19a1 1 0 1 0 2 0v-6h6a1 1 0 1 0 0-2h-6V5a1 1 0 1 0-2 0v6H5a1 1 0 1 0 0 2h6v6z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="right-head-more">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"
+                            class="x19dipnz x1lliihq x1tzjh5l x1k90msu x2h7rmj x1qfuztq"
+                            style="--color:var(--primary-icon)">
+                            <path
+                                d="M18.5 1A1.5 1.5 0 0 0 17 2.5v3A1.5 1.5 0 0 0 18.5 7h3A1.5 1.5 0 0 0 23 5.5v-3A1.5 1.5 0 0 0 21.5 1h-3zm0 8a1.5 1.5 0 0 0-1.5 1.5v3a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5v-3A1.5 1.5 0 0 0 21.5 9h-3zm-16 8A1.5 1.5 0 0 0 1 18.5v3A1.5 1.5 0 0 0 2.5 23h3A1.5 1.5 0 0 0 7 21.5v-3A1.5 1.5 0 0 0 5.5 17h-3zm8 0A1.5 1.5 0 0 0 9 18.5v3a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5v-3a1.5 1.5 0 0 0-1.5-1.5h-3zm8 0a1.5 1.5 0 0 0-1.5 1.5v3a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5v-3a1.5 1.5 0 0 0-1.5-1.5h-3zm-16-8A1.5 1.5 0 0 0 1 10.5v3A1.5 1.5 0 0 0 2.5 15h3A1.5 1.5 0 0 0 7 13.5v-3A1.5 1.5 0 0 0 5.5 9h-3zm0-8A1.5 1.5 0 0 0 1 2.5v3A1.5 1.5 0 0 0 2.5 7h3A1.5 1.5 0 0 0 7 5.5v-3A1.5 1.5 0 0 0 5.5 1h-3zm8 0A1.5 1.5 0 0 0 9 2.5v3A1.5 1.5 0 0 0 10.5 7h3A1.5 1.5 0 0 0 15 5.5v-3A1.5 1.5 0 0 0 13.5 1h-3zm0 8A1.5 1.5 0 0 0 9 10.5v3a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5v-3A1.5 1.5 0 0 0 13.5 9h-3z">
+                            </path>
+                        </svg>
+                    </div>
+
+                    <div>
+                        <svg viewBox="0 0 12 13" width="20" height="20" fill="currentColor">
+                            <g fill-rule="evenodd" transform="translate(-450 -1073)">
+                                <path
+                                    d="m459.603 1077.948-1.762 2.851a.89.89 0 0 1-1.302.245l-1.402-1.072a.354.354 0 0 0-.433.001l-1.893 1.465c-.253.196-.583-.112-.414-.386l1.763-2.851a.89.89 0 0 1 1.301-.245l1.402 1.072a.354.354 0 0 0 .434-.001l1.893-1.465c.253-.196.582.112.413.386M456 1073.5c-3.38 0-6 2.476-6 5.82 0 1.75.717 3.26 1.884 4.305.099.087.158.21.162.342l.032 1.067a.48.48 0 0 0 .674.425l1.191-.526a.473.473 0 0 1 .32-.024c.548.151 1.13.231 1.737.231 3.38 0 6-2.476 6-5.82 0-3.344-2.62-5.82-6-5.82">
+                                </path>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <div class="notifications">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                            <path
+                                d="M3 9.5a9 9 0 1 1 18 0v2.927c0 1.69.475 3.345 1.37 4.778a1.5 1.5 0 0 1-1.272 2.295h-4.625a4.5 4.5 0 0 1-8.946 0H2.902a1.5 1.5 0 0 1-1.272-2.295A9.01 9.01 0 0 0 3 12.43V9.5zm6.55 10a2.5 2.5 0 0 0 4.9 0h-4.9z">
+                            </path>
+                        </svg>
+                        <div>11</div>
+                    </div>
+
+                    <div class="pic">
+                        <img src="images/pic1.jpg" alt="mypicture" width="40px" height="40px">
+                        <div></div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="left">
+            <div class="pic1">
+                <img src="images/pic1.jpg" alt="mypicture" width="28px" height="28px">
+                <span>Mr Maduka</span>
+            </div>
+
+            <div class="left-item">
+                <i data-visualcompletion="css-img" class="sideicons"></i>
+                <span>Friends</span>
+            </div>
+
+            <div class="left-item">
+                <i data-visualcompletion="css-img" class="sideicons"></i>
+                <span>Memories</span>
+            </div>
+
+            <div class="left-item">
+                <i data-visualcompletion="css-img" class="sideicons"></i>
+                <span>Saved</span>
+            </div>
+
+            <div class="left-item">
+                <i data-visualcompletion="css-img" class="sideicons"></i>
+                <span>Groups</span>
+            </div>
+
+            <div class="left-item">
+                <i data-visualcompletion="css-img" class="sideicons"></i>
+                <span>Video</span>
+            </div>
+
+            <div class="left-item">
+                <i data-visualcompletion="css-img" class="sideicons"></i>
+                <span>Marketplace</span>
+            </div>
+
+            <div class="left-item">
+                <i data-visualcompletion="css-img" class="sideicons"></i>
+                <span>Feeds</span>
+            </div>
+
+            <div class="left-item">
+                <i data-visualcompletion="css-img" class="sideicons"></i>
+                <span>Events</span>
+            </div>
+
+            <div class="left-item">
+                <img src="images/icons/adds.png" width="28px" height="28px" alt="">
+                <span>Adds Manager</span>
+            </div>
+            <div class="left-item">
+                <img src="images/icons/climate.png" width="28px" height="28px" alt="">
+                <span>Climate Science Center</span>
+            </div>
+            <div class="left-item">
+                <img src="images/icons/crisis.png" width="28px" height="28px" alt="">
+                <span>Crisis</span>
+            </div>
+
+            <div class="left-item">
+                <i data-visualcompletion="css-img" class="sideicons"></i>
+                <span>Fundraisers</span>
+            </div>
+
+
+
+        </div>
+
+
+
+        <div class="center">
+
+            <div class="story">
+
+                <div class="add-story">
+                    <img src="images/pic1.jpg" alt="">
+                    <div class="story-button">
+                        <div class="button-bg1">
+                            <div class="button-bg2">
+                                <svg viewBox="0 0 20 20" width="20" height="20" fill="currentColor"
+                                    class="x19dipnz x1lliihq x1tzjh5l x1k90msu x2h7rmj x1qfuztq"
+                                    style="color: #FFFFFF;">
+                                    <g fill-rule="evenodd" transform="translate(-446 -350)">
+                                        <g fill-rule="nonzero">
+                                            <path d="M95 201.5h13a1 1 0 1 0 0-2H95a1 1 0 1 0 0 2z"
+                                                transform="translate(354.5 159.5)"></path>
+                                            <path d="M102.5 207v-13a1 1 0 1 0-2 0v13a1 1 0 1 0 2 0z"
+                                                transform="translate(354.5 159.5)"></path>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                        <span>
+                            Create story
+                        </span>
+
+                    </div>
+
+                </div>
+                <div class="story1">
+                    <img src="images/kick1.jpg" alt="" class="storypic">
+                    <div class="storycont">
+                        <div class="prof">
+                            <img src="images/kick2.jpg" alt="" class="prof1_pic">
+                            <div class="online active1"></div>
+                        </div>
+                    </div>
+
+                    <div class="story-text">
+                        <span>B/R Kicks</span>
+                    </div>
+                </div>
+                <div class="story1">
+                    <img src="images/fiba1.jpg" alt="" class="storypic">
+                    <div class="storycont">
+                        <div class="prof">
+                            <img src="images/fiba2.png" alt="" class="prof1_pic">
+                            <div class="online active1"></div>
+                        </div>
+                    </div>
+
+                    <div class="story-text">
+                        <span>FIBA</span>
+                    </div>
+                </div>
+                <div class="story1">
+                    <img src="images/davido1.jpg" alt="" class="storypic">
+                    <div class="storycont">
+                        <div class="prof">
+                            <img src="images/davido2.jpg" alt="" class="prof1_pic">
+                            <div class=""></div>
+                        </div>
+                    </div>
+
+                    <div class="story-text">
+                        <span>Davido</span>
+                    </div>
+                </div>
+                <div class="story1 fifth-story">
+                    <img src="images/davido1.jpg" alt="" class="storypic">
+                    <div class="storycont">
+                        <div class="prof">
+                            <img src="images/davido2.jpg" alt="" class="prof1_pic">
+                            <div class=""></div>
+                        </div>
+                    </div>
+
+                    <div class="story-text">
+                        <span>Davido</span>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="make-post">
+
+                <div class="post-top">
+                    <img src="images/pic1.jpg" alt="">
+                    <div class="make-post-button">What's on your mind, Mr. Maduka?</div>
+                </div>
+                <div class="post-bottom">
+
+                    <div class="make-post-item">
+                        <img src="images/icons/live.png" alt="">
+                        <span>Live video</span>
+                    </div>
+                    <div class="make-post-item">
+                        <img src="images/icons/photos.png" alt="">
+                        <span>Photo/video</span>
+                    </div>
+                    <div class="make-post-item">
+                        <img src="images/icons/feeling.png" alt="">
+                        <span>Feeling/activity</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="post">
+                <div class="post-profile">
+
+
+                    <div class="user-details">
+                        <img src="images/thescore.png" alt="">
+
+
+                        <div>
+                            <div class="username">
+                                theScore
+                                <svg viewBox="0 0 12 13" width="12" height="12" fill="currentColor"
+                                    title="Verified account"
+                                    class="x19dipnz x1lliihq x1tzjh5l x1k90msu x2h7rmj x1qfuztq"
+                                    style="color: #0866FF;">
+                                    <title>Verified account</title>
+                                    <g fill-rule="evenodd" transform="translate(-98 -917)">
+                                        <path
+                                            d="m106.853 922.354-3.5 3.5a.499.499 0 0 1-.706 0l-1.5-1.5a.5.5 0 1 1 .706-.708l1.147 1.147 3.147-3.147a.5.5 0 1 1 .706.708m3.078 2.295-.589-1.149.588-1.15a.633.633 0 0 0-.219-.82l-1.085-.7-.065-1.287a.627.627 0 0 0-.6-.603l-1.29-.066-.703-1.087a.636.636 0 0 0-.82-.217l-1.148.588-1.15-.588a.631.631 0 0 0-.82.22l-.701 1.085-1.289.065a.626.626 0 0 0-.6.6l-.066 1.29-1.088.702a.634.634 0 0 0-.216.82l.588 1.149-.588 1.15a.632.632 0 0 0 .219.819l1.085.701.065 1.286c.014.33.274.59.6.604l1.29.065.703 1.088c.177.27.53.362.82.216l1.148-.588 1.15.589a.629.629 0 0 0 .82-.22l.701-1.085 1.286-.064a.627.627 0 0 0 .604-.601l.065-1.29 1.088-.703a.633.633 0 0 0 .216-.819">
+                                        </path>
+                                    </g>
+                                </svg>
+
+                            </div>
+                            <div class="time">
+                                6 hours ago ·
+                                <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor"
+                                    title="Shared with Public">
+                                    <title>Shared with Public</title>
+                                    <g fill-rule="evenodd" transform="translate(-448 -544)">
+                                        <g>
+                                            <path
+                                                d="M109.5 408.5c0 3.23-2.04 5.983-4.903 7.036l.07-.036c1.167-1 1.814-2.967 2-3.834.214-1 .303-1.3-.5-1.96-.31-.253-.677-.196-1.04-.476-.246-.19-.356-.59-.606-.73-.594-.337-1.107.11-1.954.223a2.666 2.666 0 0 1-1.15-.123c-.007 0-.007 0-.013-.004l-.083-.03c-.164-.082-.077-.206.006-.36h-.006c.086-.17.086-.376-.05-.529-.19-.214-.54-.214-.804-.224-.106-.003-.21 0-.313.004l-.003-.004c-.04 0-.084.004-.124.004h-.037c-.323.007-.666-.034-.893-.314-.263-.353-.29-.733.097-1.09.28-.26.863-.8 1.807-.22.603.37 1.166.667 1.666.5.33-.11.48-.303.094-.87a1.128 1.128 0 0 1-.214-.73c.067-.776.687-.84 1.164-1.2.466-.356.68-.943.546-1.457-.106-.413-.51-.873-1.28-1.01a7.49 7.49 0 0 1 6.524 7.434"
+                                                transform="translate(354 143.5)"></path>
+                                            <path
+                                                d="M104.107 415.696A7.498 7.498 0 0 1 94.5 408.5a7.48 7.48 0 0 1 3.407-6.283 5.474 5.474 0 0 0-1.653 2.334c-.753 2.217-.217 4.075 2.29 4.075.833 0 1.4.561 1.333 2.375-.013.403.52 1.78 2.45 1.89.7.04 1.184 1.053 1.33 1.74.06.29.127.65.257.97a.174.174 0 0 0 .193.096"
+                                                transform="translate(354 143.5)"></path>
+                                            <path fill-rule="nonzero"
+                                                d="M110 408.5a8 8 0 1 1-16 0 8 8 0 0 1 16 0zm-1 0a7 7 0 1 0-14 0 7 7 0 0 0 14 0z"
+                                                transform="translate(354 143.5)"></path>
+                                        </g>
+                                    </g>
+                                </svg>
+
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="options">
+                        <svg viewBox="0 0 20 20" width="20" height="20" fill="currentColor" style="color: #65676B;">
+                            <g fill-rule="evenodd" transform="translate(-446 -350)">
+                                <path
+                                    d="M458 360a2 2 0 1 1-4 0 2 2 0 0 1 4 0m6 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0m-12 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0">
+                                </path>
+                            </g>
+                        </svg>
+                        <div role="none" data-visualcompletion="ignore" style="inset: -8px;"></div>
+                        <svg viewBox="0 0 20 20" width="20" height="20" fill="currentColor" style="color: #65676B;">
+                            <g fill-rule="evenodd" transform="translate(-446 -350)">
+                                <g fill-rule="nonzero">
+                                    <path
+                                        d="m95.334 195.249 12.917 12.917a1 1 0 0 0 1.415-1.415l-12.917-12.917a1 1 0 0 0-1.415 1.415z"
+                                        transform="translate(353.5 159)"></path>
+                                    <path
+                                        d="m108.251 193.834-12.917 12.917a1 1 0 0 0 1.415 1.415l12.917-12.917a1 1 0 0 0-1.415-1.415z"
+                                        transform="translate(353.5 159)"></path>
+                                </g>
+                            </g>
+                        </svg>
+                        <div class="x1ey2m1c xds687c x17qophe xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h xzolkzo x12go9s9 x1rnf11y xprq8jg"
+                            role="none" data-visualcompletion="ignore" style="inset: 0px;"></div>
+                    </div>
+
+                </div>
+
+                <div class="post-text">
+                    Bronny has signed his rookie contract.
+                    <img src="images/icons/emoji.png" alt="">
+                </div>
+
+                <div class="post-image">
+                    <img src="{{url_for('static', filename = 'images/bronny.jpg')}}" alt="">
+                </div>
+
+                <div class="post-reaction">
+                    <div class="reaction-top">
+
+                        <div class="reaction-left">
+
+                            <div class="emoji1">
+                                <img class="x16dsc37" height="18" role="presentation"
+                                    src="data:image/svg+xml,%3Csvg fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M16.0001 7.9996c0 4.418-3.5815 7.9996-7.9995 7.9996S.001 12.4176.001 7.9996 3.5825 0 8.0006 0C12.4186 0 16 3.5815 16 7.9996Z' fill='url(%23paint0_linear_15251_63610)'/%3E%3Cpath d='M16.0001 7.9996c0 4.418-3.5815 7.9996-7.9995 7.9996S.001 12.4176.001 7.9996 3.5825 0 8.0006 0C12.4186 0 16 3.5815 16 7.9996Z' fill='url(%23paint1_radial_15251_63610)'/%3E%3Cpath d='M16.0001 7.9996c0 4.418-3.5815 7.9996-7.9995 7.9996S.001 12.4176.001 7.9996 3.5825 0 8.0006 0C12.4186 0 16 3.5815 16 7.9996Z' fill='url(%23paint2_radial_15251_63610)' fill-opacity='.5'/%3E%3Cpath d='M7.3014 3.8662a.6974.6974 0 0 1 .6974-.6977c.6742 0 1.2207.5465 1.2207 1.2206v1.7464a.101.101 0 0 0 .101.101h1.7953c.992 0 1.7232.9273 1.4917 1.892l-.4572 1.9047a2.301 2.301 0 0 1-2.2374 1.764H6.9185a.5752.5752 0 0 1-.5752-.5752V7.7384c0-.4168.097-.8278.2834-1.2005l.2856-.5712a3.6878 3.6878 0 0 0 .3893-1.6509l-.0002-.4496ZM4.367 7a.767.767 0 0 0-.7669.767v3.2598a.767.767 0 0 0 .767.767h.767a.3835.3835 0 0 0 .3835-.3835V7.3835A.3835.3835 0 0 0 5.134 7h-.767Z' fill='%23fff'/%3E%3Cdefs%3E%3CradialGradient id='paint1_radial_15251_63610' cx='0' cy='0' r='1' gradientUnits='userSpaceOnUse' gradientTransform='rotate(90 .0005 8) scale(7.99958)'%3E%3Cstop offset='.5618' stop-color='%230866FF' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%230866FF' stop-opacity='.1'/%3E%3C/radialGradient%3E%3CradialGradient id='paint2_radial_15251_63610' cx='0' cy='0' r='1' gradientUnits='userSpaceOnUse' gradientTransform='rotate(45 -4.5257 10.9237) scale(10.1818)'%3E%3Cstop offset='.3143' stop-color='%2302ADFC'/%3E%3Cstop offset='1' stop-color='%2302ADFC' stop-opacity='0'/%3E%3C/radialGradient%3E%3ClinearGradient id='paint0_linear_15251_63610' x1='2.3989' y1='2.3999' x2='13.5983' y2='13.5993' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%2302ADFC'/%3E%3Cstop offset='.5' stop-color='%230866FF'/%3E%3Cstop offset='1' stop-color='%232B7EFF'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E"
+                                    width="18">
+                            </div>
+                            <div class="emoji2">
+                                <img class="x16dsc37" height="18" role="presentation"
+                                    src="data:image/svg+xml,%3Csvg fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cg clip-path='url(%23clip0_15251_63610)'%3E%3Cpath d='M15.9953 7.9996c0 4.418-3.5816 7.9996-7.9996 7.9996S-.004 12.4176-.004 7.9996 3.5776 0 7.9957 0c4.418 0 7.9996 3.5815 7.9996 7.9996Z' fill='url(%23paint0_linear_15251_63610)'/%3E%3Cpath d='M15.9973 7.9992c0 4.4178-3.5811 7.9992-7.9987 7.9992C3.5811 15.9984 0 12.417 0 7.9992S3.5811 0 7.9986 0c4.4176 0 7.9987 3.5814 7.9987 7.9992Z' fill='url(%23paint1_radial_15251_63610)'/%3E%3Cpath d='M15.9953 7.9996c0 4.418-3.5816 7.9996-7.9996 7.9996S-.004 12.4176-.004 7.9996 3.5776 0 7.9957 0c4.418 0 7.9996 3.5815 7.9996 7.9996Z' fill='url(%23paint2_radial_15251_63610)' fill-opacity='.8'/%3E%3Cpath d='M12.5278 8.1957c.4057.1104.6772.4854.623.9024-.3379 2.6001-2.5167 4.9012-5.1542 4.9012s-4.8163-2.3011-5.1542-4.9012c-.0542-.417.2173-.792.623-.9024.8708-.237 2.5215-.596 4.5312-.596 2.0098 0 3.6605.359 4.5312.596Z' fill='%234B280E'/%3E%3Cpath d='M11.5809 12.3764c-.9328.9843-2.1948 1.6228-3.5841 1.6228-1.3892 0-2.6512-.6383-3.5839-1.6225a1.5425 1.5425 0 0 0-.016-.0174c.4475-1.0137 2.2-1.3599 3.5999-1.3599 1.4 0 3.1514.3468 3.5998 1.3599l-.0157.0171Z' fill='url(%23paint3_linear_15251_63610)'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M13.3049 5.8793c.1614-1.1485-.6387-2.2103-1.7872-2.3717l-.0979-.0138c-1.1484-.1614-2.2103.6388-2.3717 1.7872l-.0163.1164a.5.5 0 0 0 .9902.1392l.0163-.1164c.0846-.6016.6408-1.0207 1.2424-.9362l.0978.0138c.6016.0845 1.0207.6407.9362 1.2423l-.0164.1164a.5.5 0 0 0 .9903.1392l.0163-.1164ZM2.6902 5.8793c-.1614-1.1485.6387-2.2103 1.7872-2.3717l.0979-.0138c1.1484-.1614 2.2103.6388 2.3717 1.7872l.0164.1164a.5.5 0 1 1-.9903.1392l-.0163-.1164c-.0846-.6016-.6408-1.0207-1.2423-.9362l-.098.0138c-.6015.0845-1.0206.6407-.936 1.2423l.0163.1164a.5.5 0 0 1-.9902.1392l-.0164-.1164Z' fill='%231C1C1D'/%3E%3C/g%3E%3Cdefs%3E%3CradialGradient id='paint1_radial_15251_63610' cx='0' cy='0' r='1' gradientUnits='userSpaceOnUse' gradientTransform='matrix(0 7.9992 -7.99863 0 7.9986 7.9992)'%3E%3Cstop offset='.5637' stop-color='%23FF5758' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23FF5758' stop-opacity='.1'/%3E%3C/radialGradient%3E%3CradialGradient id='paint2_radial_15251_63610' cx='0' cy='0' r='1' gradientUnits='userSpaceOnUse' gradientTransform='rotate(45 -4.5272 10.9202) scale(10.1818)'%3E%3Cstop stop-color='%23FFF287'/%3E%3Cstop offset='1' stop-color='%23FFF287' stop-opacity='0'/%3E%3C/radialGradient%3E%3ClinearGradient id='paint0_linear_15251_63610' x1='2.396' y1='2.3999' x2='13.5954' y2='13.5993' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23FFF287'/%3E%3Cstop offset='1' stop-color='%23F68628'/%3E%3C/linearGradient%3E%3ClinearGradient id='paint3_linear_15251_63610' x1='5.1979' y1='10.7996' x2='5.245' y2='14.2452' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23FF60A4'/%3E%3Cstop offset='.2417' stop-color='%23FA2E3E'/%3E%3Cstop offset='1' stop-color='%23BC0A26'/%3E%3C/linearGradient%3E%3CclipPath id='clip0_15251_63610'%3E%3Cpath fill='%23fff' d='M-.002 0h16v15.9992h-16z'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E"
+                                    width="18">
+                            </div>
+                            <div class="emoji3">
+                                <img class="x16dsc37" height="18" role="presentation"
+                                    src="data:image/svg+xml,%3Csvg fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cg clip-path='url(%23clip0_15251_63610)'%3E%3Cpath d='M15.9963 8c0 4.4179-3.5811 7.9993-7.9986 7.9993-4.4176 0-7.9987-3.5814-7.9987-7.9992 0-4.4179 3.5811-7.9992 7.9987-7.9992 4.4175 0 7.9986 3.5813 7.9986 7.9992Z' fill='url(%23paint0_linear_15251_63610)'/%3E%3Cpath d='M15.9973 7.9992c0 4.4178-3.5811 7.9992-7.9987 7.9992C3.5811 15.9984 0 12.417 0 7.9992S3.5811 0 7.9986 0c4.4176 0 7.9987 3.5814 7.9987 7.9992Z' fill='url(%23paint1_radial_15251_63610)'/%3E%3Cpath d='M7.9996 5.9081c-.3528-.8845-1.1936-1.507-2.1748-1.507-1.4323 0-2.4254 1.328-2.4254 2.6797 0 2.2718 2.3938 4.0094 4.0816 5.1589.3168.2157.7205.2157 1.0373 0 1.6878-1.1495 4.0815-2.8871 4.0815-5.159 0-1.3517-.993-2.6796-2.4254-2.6796-.9811 0-1.822.6225-2.1748 1.507Z' fill='%23fff'/%3E%3C/g%3E%3Cdefs%3E%3CradialGradient id='paint1_radial_15251_63610' cx='0' cy='0' r='1' gradientUnits='userSpaceOnUse' gradientTransform='matrix(0 7.9992 -7.99863 0 7.9986 7.9992)'%3E%3Cstop offset='.5637' stop-color='%23E11731' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23E11731' stop-opacity='.1'/%3E%3C/radialGradient%3E%3ClinearGradient id='paint0_linear_15251_63610' x1='2.3986' y1='2.4007' x2='13.5975' y2='13.5993' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23FF74AE'/%3E%3Cstop offset='.5001' stop-color='%23FA2E3E'/%3E%3Cstop offset='1' stop-color='%23FF5758'/%3E%3C/linearGradient%3E%3CclipPath id='clip0_15251_63610'%3E%3Cpath fill='%23fff' d='M-.001.0009h15.9992v15.9984H-.001z'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E"
+                                    width="18">
+                                <div class="total">
+                                    theScore and 4.4K others
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+
+
+                        <div class="reaction-right">
+
+                            <div class="reactant">
+                                1.4k
+                                <i data-visualcompletion="css-img" class="reaction-icon"
+                                    style="background-image: url(images/icons/emolist.png); background-position: 0px -1342px; background-size: auto; width: 16px; height: 16px; background-repeat: no-repeat; display: inline-block;"></i>
+                            </div>
+                            <div class="reactant">
+                                700
+                                <i data-visualcompletion="css-img" class="reaction-icon"
+                                    style="background-image: url(images/icons/emolist.png); background-position: 0px -1359px; background-size: auto; width: 16px; height: 16px; background-repeat: no-repeat; display: inline-block;"></i>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div class="reaction-bottom">
+
+                        <div class="reactions">
+
+                            <i data-visualcompletion="css-img" class="reaction-icon"
+                                style="background-image: url(images/icons/emolist.png); background-position: 0px -697px; background-size: auto; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
+                            Like
+                        </div>
+
+                        <div class="reactions">
+                            <i data-visualcompletion="css-img" class="reaction-icon"
+                                style="background-image: url(images/icons/emolist.png); background-position: 0px -508px; background-size: auto; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
+                            Comments
+                        </div>
+
+                        <div class="reactions">
+                            <i data-visualcompletion="css-img" class="reaction-icon"
+                                style="background-image: url(images/icons/emolist.png); background-position: 0px -844px; background-size: auto; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
+                            Share
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="post">
+                <div class="post-profile">
+
+
+                    <div class="user-details">
+                        <img src="images/icons/Clutchpoints.png" alt="">
+
+
+                        <div>
+                            <div class="username">
+                                Clutchpoints
+                                <svg viewBox="0 0 12 13" width="12" height="12" fill="currentColor"
+                                    title="Verified account" style="color: #0866FF;">
+                                    <title>Verified account</title>
+                                    <g fill-rule="evenodd" transform="translate(-98 -917)">
+                                        <path
+                                            d="m106.853 922.354-3.5 3.5a.499.499 0 0 1-.706 0l-1.5-1.5a.5.5 0 1 1 .706-.708l1.147 1.147 3.147-3.147a.5.5 0 1 1 .706.708m3.078 2.295-.589-1.149.588-1.15a.633.633 0 0 0-.219-.82l-1.085-.7-.065-1.287a.627.627 0 0 0-.6-.603l-1.29-.066-.703-1.087a.636.636 0 0 0-.82-.217l-1.148.588-1.15-.588a.631.631 0 0 0-.82.22l-.701 1.085-1.289.065a.626.626 0 0 0-.6.6l-.066 1.29-1.088.702a.634.634 0 0 0-.216.82l.588 1.149-.588 1.15a.632.632 0 0 0 .219.819l1.085.701.065 1.286c.014.33.274.59.6.604l1.29.065.703 1.088c.177.27.53.362.82.216l1.148-.588 1.15.589a.629.629 0 0 0 .82-.22l.701-1.085 1.286-.064a.627.627 0 0 0 .604-.601l.065-1.29 1.088-.703a.633.633 0 0 0 .216-.819">
+                                        </path>
+                                    </g>
+                                </svg>
+
+                            </div>
+                            <div class="time">
+                                2 days ago ·
+                                <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor"
+                                    title="Shared with Public">
+                                    <title>Shared with Public</title>
+                                    <g fill-rule="evenodd" transform="translate(-448 -544)">
+                                        <g>
+                                            <path
+                                                d="M109.5 408.5c0 3.23-2.04 5.983-4.903 7.036l.07-.036c1.167-1 1.814-2.967 2-3.834.214-1 .303-1.3-.5-1.96-.31-.253-.677-.196-1.04-.476-.246-.19-.356-.59-.606-.73-.594-.337-1.107.11-1.954.223a2.666 2.666 0 0 1-1.15-.123c-.007 0-.007 0-.013-.004l-.083-.03c-.164-.082-.077-.206.006-.36h-.006c.086-.17.086-.376-.05-.529-.19-.214-.54-.214-.804-.224-.106-.003-.21 0-.313.004l-.003-.004c-.04 0-.084.004-.124.004h-.037c-.323.007-.666-.034-.893-.314-.263-.353-.29-.733.097-1.09.28-.26.863-.8 1.807-.22.603.37 1.166.667 1.666.5.33-.11.48-.303.094-.87a1.128 1.128 0 0 1-.214-.73c.067-.776.687-.84 1.164-1.2.466-.356.68-.943.546-1.457-.106-.413-.51-.873-1.28-1.01a7.49 7.49 0 0 1 6.524 7.434"
+                                                transform="translate(354 143.5)"></path>
+                                            <path
+                                                d="M104.107 415.696A7.498 7.498 0 0 1 94.5 408.5a7.48 7.48 0 0 1 3.407-6.283 5.474 5.474 0 0 0-1.653 2.334c-.753 2.217-.217 4.075 2.29 4.075.833 0 1.4.561 1.333 2.375-.013.403.52 1.78 2.45 1.89.7.04 1.184 1.053 1.33 1.74.06.29.127.65.257.97a.174.174 0 0 0 .193.096"
+                                                transform="translate(354 143.5)"></path>
+                                            <path fill-rule="nonzero"
+                                                d="M110 408.5a8 8 0 1 1-16 0 8 8 0 0 1 16 0zm-1 0a7 7 0 1 0-14 0 7 7 0 0 0 14 0z"
+                                                transform="translate(354 143.5)"></path>
+                                        </g>
+                                    </g>
+                                </svg>
+
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="options">
+                        <svg viewBox="0 0 20 20" width="20" height="20" fill="currentColor" style="color: #65676B;">
+                            <g fill-rule="evenodd" transform="translate(-446 -350)">
+                                <path
+                                    d="M458 360a2 2 0 1 1-4 0 2 2 0 0 1 4 0m6 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0m-12 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0">
+                                </path>
+                            </g>
+                        </svg>
+                        <div role="none" data-visualcompletion="ignore" style="inset: -8px;"></div>
+                        <svg viewBox="0 0 20 20" width="20" height="20" fill="currentColor" style="color: #65676B;">
+                            <g fill-rule="evenodd" transform="translate(-446 -350)">
+                                <g fill-rule="nonzero">
+                                    <path
+                                        d="m95.334 195.249 12.917 12.917a1 1 0 0 0 1.415-1.415l-12.917-12.917a1 1 0 0 0-1.415 1.415z"
+                                        transform="translate(353.5 159)"></path>
+                                    <path
+                                        d="m108.251 193.834-12.917 12.917a1 1 0 0 0 1.415 1.415l12.917-12.917a1 1 0 0 0-1.415-1.415z"
+                                        transform="translate(353.5 159)"></path>
+                                </g>
+                            </g>
+                        </svg>
+                        <div class="x1ey2m1c xds687c x17qophe xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h xzolkzo x12go9s9 x1rnf11y xprq8jg"
+                            role="none" data-visualcompletion="ignore" style="inset: 0px;"></div>
+                    </div>
+
+                </div>
+
+                <div class="post-text">
+                    At this year's NBA Draft, Bronny James signed a hefty guaranteed contract, which is unusual for a
+                    second-round pick.<br><br>
+                    10 years ago, a then-relatively unknown and 41st overall selection Nikola Jokic had to impress the
+                    Nuggets to earn his way to a decent rookie deal.<br><br>
+                    Bronny will have something to prove to prove his value this season. He'll be a man on a mission
+                    <img src="images/icons/emoji2.png" alt="">
+                </div>
+
+                <div class="post-image">
+                    <img src="images/clutchimg.jpg" alt="">
+                </div>
+
+                <div class="post-reaction">
+                    <div class="reaction-top">
+
+                        <div class="reaction-left">
+
+                            <div class="emoji1">
+                                <img class="x16dsc37" height="18" role="presentation"
+                                    src="data:image/svg+xml,%3Csvg fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M16.0001 7.9996c0 4.418-3.5815 7.9996-7.9995 7.9996S.001 12.4176.001 7.9996 3.5825 0 8.0006 0C12.4186 0 16 3.5815 16 7.9996Z' fill='url(%23paint0_linear_15251_63610)'/%3E%3Cpath d='M16.0001 7.9996c0 4.418-3.5815 7.9996-7.9995 7.9996S.001 12.4176.001 7.9996 3.5825 0 8.0006 0C12.4186 0 16 3.5815 16 7.9996Z' fill='url(%23paint1_radial_15251_63610)'/%3E%3Cpath d='M16.0001 7.9996c0 4.418-3.5815 7.9996-7.9995 7.9996S.001 12.4176.001 7.9996 3.5825 0 8.0006 0C12.4186 0 16 3.5815 16 7.9996Z' fill='url(%23paint2_radial_15251_63610)' fill-opacity='.5'/%3E%3Cpath d='M7.3014 3.8662a.6974.6974 0 0 1 .6974-.6977c.6742 0 1.2207.5465 1.2207 1.2206v1.7464a.101.101 0 0 0 .101.101h1.7953c.992 0 1.7232.9273 1.4917 1.892l-.4572 1.9047a2.301 2.301 0 0 1-2.2374 1.764H6.9185a.5752.5752 0 0 1-.5752-.5752V7.7384c0-.4168.097-.8278.2834-1.2005l.2856-.5712a3.6878 3.6878 0 0 0 .3893-1.6509l-.0002-.4496ZM4.367 7a.767.767 0 0 0-.7669.767v3.2598a.767.767 0 0 0 .767.767h.767a.3835.3835 0 0 0 .3835-.3835V7.3835A.3835.3835 0 0 0 5.134 7h-.767Z' fill='%23fff'/%3E%3Cdefs%3E%3CradialGradient id='paint1_radial_15251_63610' cx='0' cy='0' r='1' gradientUnits='userSpaceOnUse' gradientTransform='rotate(90 .0005 8) scale(7.99958)'%3E%3Cstop offset='.5618' stop-color='%230866FF' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%230866FF' stop-opacity='.1'/%3E%3C/radialGradient%3E%3CradialGradient id='paint2_radial_15251_63610' cx='0' cy='0' r='1' gradientUnits='userSpaceOnUse' gradientTransform='rotate(45 -4.5257 10.9237) scale(10.1818)'%3E%3Cstop offset='.3143' stop-color='%2302ADFC'/%3E%3Cstop offset='1' stop-color='%2302ADFC' stop-opacity='0'/%3E%3C/radialGradient%3E%3ClinearGradient id='paint0_linear_15251_63610' x1='2.3989' y1='2.3999' x2='13.5983' y2='13.5993' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%2302ADFC'/%3E%3Cstop offset='.5' stop-color='%230866FF'/%3E%3Cstop offset='1' stop-color='%232B7EFF'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E"
+                                    width="18">
+                            </div>
+                            <div class="emoji2">
+                                <img class="x16dsc37" height="18" role="presentation"
+                                    src="data:image/svg+xml,%3Csvg fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cg clip-path='url(%23clip0_15251_63610)'%3E%3Cpath d='M15.9953 7.9996c0 4.418-3.5816 7.9996-7.9996 7.9996S-.004 12.4176-.004 7.9996 3.5776 0 7.9957 0c4.418 0 7.9996 3.5815 7.9996 7.9996Z' fill='url(%23paint0_linear_15251_63610)'/%3E%3Cpath d='M15.9973 7.9992c0 4.4178-3.5811 7.9992-7.9987 7.9992C3.5811 15.9984 0 12.417 0 7.9992S3.5811 0 7.9986 0c4.4176 0 7.9987 3.5814 7.9987 7.9992Z' fill='url(%23paint1_radial_15251_63610)'/%3E%3Cpath d='M15.9953 7.9996c0 4.418-3.5816 7.9996-7.9996 7.9996S-.004 12.4176-.004 7.9996 3.5776 0 7.9957 0c4.418 0 7.9996 3.5815 7.9996 7.9996Z' fill='url(%23paint2_radial_15251_63610)' fill-opacity='.8'/%3E%3Cpath d='M12.5278 8.1957c.4057.1104.6772.4854.623.9024-.3379 2.6001-2.5167 4.9012-5.1542 4.9012s-4.8163-2.3011-5.1542-4.9012c-.0542-.417.2173-.792.623-.9024.8708-.237 2.5215-.596 4.5312-.596 2.0098 0 3.6605.359 4.5312.596Z' fill='%234B280E'/%3E%3Cpath d='M11.5809 12.3764c-.9328.9843-2.1948 1.6228-3.5841 1.6228-1.3892 0-2.6512-.6383-3.5839-1.6225a1.5425 1.5425 0 0 0-.016-.0174c.4475-1.0137 2.2-1.3599 3.5999-1.3599 1.4 0 3.1514.3468 3.5998 1.3599l-.0157.0171Z' fill='url(%23paint3_linear_15251_63610)'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M13.3049 5.8793c.1614-1.1485-.6387-2.2103-1.7872-2.3717l-.0979-.0138c-1.1484-.1614-2.2103.6388-2.3717 1.7872l-.0163.1164a.5.5 0 0 0 .9902.1392l.0163-.1164c.0846-.6016.6408-1.0207 1.2424-.9362l.0978.0138c.6016.0845 1.0207.6407.9362 1.2423l-.0164.1164a.5.5 0 0 0 .9903.1392l.0163-.1164ZM2.6902 5.8793c-.1614-1.1485.6387-2.2103 1.7872-2.3717l.0979-.0138c1.1484-.1614 2.2103.6388 2.3717 1.7872l.0164.1164a.5.5 0 1 1-.9903.1392l-.0163-.1164c-.0846-.6016-.6408-1.0207-1.2423-.9362l-.098.0138c-.6015.0845-1.0206.6407-.936 1.2423l.0163.1164a.5.5 0 0 1-.9902.1392l-.0164-.1164Z' fill='%231C1C1D'/%3E%3C/g%3E%3Cdefs%3E%3CradialGradient id='paint1_radial_15251_63610' cx='0' cy='0' r='1' gradientUnits='userSpaceOnUse' gradientTransform='matrix(0 7.9992 -7.99863 0 7.9986 7.9992)'%3E%3Cstop offset='.5637' stop-color='%23FF5758' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23FF5758' stop-opacity='.1'/%3E%3C/radialGradient%3E%3CradialGradient id='paint2_radial_15251_63610' cx='0' cy='0' r='1' gradientUnits='userSpaceOnUse' gradientTransform='rotate(45 -4.5272 10.9202) scale(10.1818)'%3E%3Cstop stop-color='%23FFF287'/%3E%3Cstop offset='1' stop-color='%23FFF287' stop-opacity='0'/%3E%3C/radialGradient%3E%3ClinearGradient id='paint0_linear_15251_63610' x1='2.396' y1='2.3999' x2='13.5954' y2='13.5993' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23FFF287'/%3E%3Cstop offset='1' stop-color='%23F68628'/%3E%3C/linearGradient%3E%3ClinearGradient id='paint3_linear_15251_63610' x1='5.1979' y1='10.7996' x2='5.245' y2='14.2452' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23FF60A4'/%3E%3Cstop offset='.2417' stop-color='%23FA2E3E'/%3E%3Cstop offset='1' stop-color='%23BC0A26'/%3E%3C/linearGradient%3E%3CclipPath id='clip0_15251_63610'%3E%3Cpath fill='%23fff' d='M-.002 0h16v15.9992h-16z'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E"
+                                    width="18">
+                            </div>
+                            <div class="emoji3">
+                                <img class="x16dsc37" height="18" role="presentation"
+                                    src="data:image/svg+xml,%3Csvg fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cg clip-path='url(%23clip0_15251_63610)'%3E%3Cpath d='M15.9963 8c0 4.4179-3.5811 7.9993-7.9986 7.9993-4.4176 0-7.9987-3.5814-7.9987-7.9992 0-4.4179 3.5811-7.9992 7.9987-7.9992 4.4175 0 7.9986 3.5813 7.9986 7.9992Z' fill='url(%23paint0_linear_15251_63610)'/%3E%3Cpath d='M15.9973 7.9992c0 4.4178-3.5811 7.9992-7.9987 7.9992C3.5811 15.9984 0 12.417 0 7.9992S3.5811 0 7.9986 0c4.4176 0 7.9987 3.5814 7.9987 7.9992Z' fill='url(%23paint1_radial_15251_63610)'/%3E%3Cpath d='M7.9996 5.9081c-.3528-.8845-1.1936-1.507-2.1748-1.507-1.4323 0-2.4254 1.328-2.4254 2.6797 0 2.2718 2.3938 4.0094 4.0816 5.1589.3168.2157.7205.2157 1.0373 0 1.6878-1.1495 4.0815-2.8871 4.0815-5.159 0-1.3517-.993-2.6796-2.4254-2.6796-.9811 0-1.822.6225-2.1748 1.507Z' fill='%23fff'/%3E%3C/g%3E%3Cdefs%3E%3CradialGradient id='paint1_radial_15251_63610' cx='0' cy='0' r='1' gradientUnits='userSpaceOnUse' gradientTransform='matrix(0 7.9992 -7.99863 0 7.9986 7.9992)'%3E%3Cstop offset='.5637' stop-color='%23E11731' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23E11731' stop-opacity='.1'/%3E%3C/radialGradient%3E%3ClinearGradient id='paint0_linear_15251_63610' x1='2.3986' y1='2.4007' x2='13.5975' y2='13.5993' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23FF74AE'/%3E%3Cstop offset='.5001' stop-color='%23FA2E3E'/%3E%3Cstop offset='1' stop-color='%23FF5758'/%3E%3C/linearGradient%3E%3CclipPath id='clip0_15251_63610'%3E%3Cpath fill='%23fff' d='M-.001.0009h15.9992v15.9984H-.001z'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E"
+                                    width="18">
+                                <div class="total">
+                                    theScore and 4.4K others
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+
+
+                        <div class="reaction-right">
+
+                            <div class="reactant">
+                                1.4k
+                                <i data-visualcompletion="css-img" class="reaction-icon"
+                                    style="background-image: url(images/icons/emolist.png); background-position: 0px -1342px; background-size: auto; width: 16px; height: 16px; background-repeat: no-repeat; display: inline-block;"></i>
+                            </div>
+                            <div class="reactant">
+                                700
+                                <i data-visualcompletion="css-img" class="reaction-icon"
+                                    style="background-image: url(images/icons/emolist.png); background-position: 0px -1359px; background-size: auto; width: 16px; height: 16px; background-repeat: no-repeat; display: inline-block;"></i>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div class="reaction-bottom">
+
+                        <div class="reactions">
+
+                            <i data-visualcompletion="css-img" class="reaction-icon"
+                                style="background-image: url(images/icons/emolist.png); background-position: 0px -697px; background-size: auto; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
+                            Like
+                        </div>
+
+                        <div class="reactions">
+                            <i data-visualcompletion="css-img" class="reaction-icon"
+                                style="background-image: url(images/icons/emolist.png); background-position: 0px -508px; background-size: auto; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
+                            Comments
+                        </div>
+
+                        <div class="reactions">
+                            <i data-visualcompletion="css-img" class="reaction-icon"
+                                style="background-image: url(images/icons/emolist.png); background-position: 0px -844px; background-size: auto; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
+                            Share
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+
+        <div class="right">
+
+            <div class="right-container">
+
+
+                <div class="right-header">
+                    <span>Contacts</span>
+
+
+                    <div class="search2">
+                        <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor"
+                            class="x19dipnz x1lliihq x1tzjh5l x1k90msu x2h7rmj x1qfuztq"
+                            style="--color: var(--secondary-icon);">
+                            <g fill-rule="evenodd" transform="translate(-448 -544)">
+                                <g fill-rule="nonzero">
+                                    <path
+                                        d="M10.743 2.257a6 6 0 1 1-8.485 8.486 6 6 0 0 1 8.485-8.486zm-1.06 1.06a4.5 4.5 0 1 0-6.365 6.364 4.5 4.5 0 0 0 6.364-6.363z"
+                                        transform="translate(448 544)"></path>
+                                    <path
+                                        d="M10.39 8.75a2.94 2.94 0 0 0-.199.432c-.155.417-.23.849-.172 1.284.055.415.232.794.54 1.103a.75.75 0 0 0 1.112-1.004l-.051-.057a.39.39 0 0 1-.114-.24c-.021-.155.014-.356.09-.563.031-.081.06-.145.08-.182l.012-.022a.75.75 0 1 0-1.299-.752z"
+                                        transform="translate(448 544)"></path>
+                                    <path
+                                        d="M9.557 11.659c.038-.018.09-.04.15-.064.207-.077.408-.112.562-.092.08.01.143.034.198.077l.041.036a.75.75 0 0 0 1.06-1.06 1.881 1.881 0 0 0-1.103-.54c-.435-.058-.867.018-1.284.175-.189.07-.336.143-.433.2a.75.75 0 0 0 .624 1.356l.066-.027.12-.061z"
+                                        transform="translate(448 544)"></path>
+                                    <path
+                                        d="m13.463 15.142-.04-.044-3.574-4.192c-.599-.703.355-1.656 1.058-1.057l4.191 3.574.044.04c.058.059.122.137.182.24.249.425.249.96-.154 1.41l-.057.057c-.45.403-.986.403-1.411.154a1.182 1.182 0 0 1-.24-.182zm.617-.616.444-.444a.31.31 0 0 0-.063-.052c-.093-.055-.263-.055-.35.024l.208.232.207-.206.006.007-.22.257-.026-.024.033-.034.025.027-.257.22-.007-.007zm-.027-.415c-.078.088-.078.257-.023.35a.31.31 0 0 0 .051.063l.205-.204-.233-.209z"
+                                        transform="translate(448 544)"></path>
+                                </g>
+                            </g>
+                        </svg>
+                        <div class="x1ey2m1c xds687c x17qophe xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h xzolkzo x12go9s9 x1rnf11y xprq8jg"
+                            role="none" data-visualcompletion="ignore" style="inset: -8px;"></div>
+                    </div>
+                    <div class="more">
+                        <svg viewBox="0 0 20 20" width="20" height="20" fill="currentColor"
+                            class="x19dipnz x1lliihq x1tzjh5l x1k90msu x2h7rmj x1qfuztq"
+                            style="--color: var(--secondary-icon);">
+                            <g fill-rule="evenodd" transform="translate(-446 -350)">
+                                <path
+                                    d="M458 360a2 2 0 1 1-4 0 2 2 0 0 1 4 0m6 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0m-12 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0">
+                                </path>
+                            </g>
+                        </svg>
+                        <div class="x1ey2m1c xds687c x17qophe xg01cxk x47corl x10l6tqk x13vifvy x1ebt8du x19991ni x1dhq9h xzolkzo x12go9s9 x1rnf11y xprq8jg"
+                            role="none" data-visualcompletion="ignore" style="inset: -8px;"></div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="right-item">
+                    <div class="pic2">
+                        <img src="images/pic2.jpg" alt="">
+                        Bolaji Makanaki
+                        <div class="online"></div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="right-item">
+                    <div class="pic2">
+                        <img src="images/pic3.jpg" alt="" class="nostory">
+                        Favour Enyinnaya
+                        <div class="online"></div>
+                    </div>
+                </div>
+                <div class="right-item">
+                    <div class="pic2">
+                        <img src="images/pic4.jpg" alt="" class="nostory">
+                        Chidimma Hope Ike
+                        <div class="online"></div>
+                    </div>
+                </div>
+                <div class="right-item">
+                    <div class="pic2">
+                        <img src="images/pic5.jpg" alt="" class="nostory">
+                        Mark Zuckerberg
+                        <div class="online"></div>
+                    </div>
+                </div>
+                <div class="right-item">
+                    <div class="pic2">
+                        <img src="images/pic6.jpg" alt="" class="nostory">
+                        Bill Gates
+                        <div class="online"></div>
+                    </div>
+                </div>
+                <div class="right-item">
+                    <div class="pic2">
+                        <img src="images/pic7.jpg" alt="" class="nostory">
+                        Elon Musk
+                        <div class="online"></div>
+                    </div>
+                </div>
+                <div class="right-item">
+                    <div class="pic2">
+                        <img src="images/pic8.jpg" alt="" class="nostory">
+                        Bola Ahmed Tinubu
+                        <div class="online"></div>
+                    </div>
+                </div>
+                <div class="right-item">
+                    <div class="pic2">
+                        <img src="images/pic9.jpg" alt="" class="nostory">
+                        Muhammad Buhari
+                        <div class="online"></div>
+                    </div>
+                </div>
+                <div class="right-item">
+                    <div class="pic2">
+                        <img src="{{ url_for('static', filename='images/pic13.jpg')}}" alt="" class="nostory">
+                        Albert Einstein
+                        <div class="online"></div>
+                    </div>
+                </div>
+                <div class="right-item">
+                    <div class="pic2">
+                        <img src="images/pic18.jpg" alt="" class="nostory">
+                        Megan Fox
+                        <div class="online"></div>
+                    </div>
+                </div>
+                <div class="right-item">
+                    <div class="pic2">
+                        <img src="images/pic12.jpg" alt="" class="nostory">
+                        Megan Fox
+                        <div class="online"></div>
+                    </div>
+                </div>
+                <div class="right-item">
+                    <div class="pic2">
+                        <img src="images/pic15.jpg" alt="" class="nostory">
+                        Clark Kent
+                        <div class="online"></div>
+                    </div>
+                </div>
+                <div class="right-item">
+                    <div class="pic2">
+                        <img src="images/pic17.jpg" alt="" class="nostory">
+                        Lebron James
+                        <div class="online"></div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+</body>
+
+</html>
