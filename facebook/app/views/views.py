@@ -96,6 +96,14 @@ def create_view(app):
                 return redirect(url_for('index'))
         return render_template('login.html')
     
+    @app.route('/friends')
+    def friends():
+        return render_template('friends.html')
+    
+    @app.route('/groups')
+    def groups():
+        return render_template('your-groups.html')
+    
     @app.route('/forgot_password', methods=['GET','POST'])
     def forgot():
         if request.method == 'POST':

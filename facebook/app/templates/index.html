@@ -152,7 +152,7 @@
                     width="28px" />
                 <span>{{user.first_name}} {{user.last_name}}</span>
             </div>
-            <div class="left-item">
+            <div class="left-item" id="friends">
                 <i class="sideicons" data-visualcompletion="css-img"></i>
                 <span>Friends</span>
             </div>
@@ -173,7 +173,7 @@
                 <span>Saved</span>
 
             </div> -->
-            <div class="left-item">
+            <div class="left-item" id="groups">
                 <i class="sideicons" data-visualcompletion="css-img"></i>
                 <span>Groups</span>
             </div>
@@ -813,8 +813,12 @@
 
         const pic = document.getElementById('pic-button')
         const leave = document.getElementById('leave')
+        const friends = document.getElementById('friends')
+        const groups = document.getElementById('groups')
 
-        var route = {{ url_for('login')|tojson }};
+        var logoutRoute = {{ url_for('login')|tojson }};
+        var friendsRoute = {{ url_for('friends')|tojson }};
+        var groupsRoute = {{ url_for('groups')|tojson }};
 
 
 
@@ -822,7 +826,13 @@
             leave.classList.toggle('show3')
         })
         leave.addEventListener('click', () => {
-            window.location.href = route
+            window.location.href = logoutRoute
+        })
+        friends.addEventListener('click', () => {
+            window.location.href = friendsRoute
+        })
+        groups.addEventListener('click', () => {
+            window.location.href = groupsRoute
         })
 
 
