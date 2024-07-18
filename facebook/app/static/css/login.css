@@ -624,3 +624,31 @@ body {
     border-color: #3b6e22 #3b6e22 #2c5115;
 
 }
+
+.error1{
+    padding-top: 10px;
+    padding-left: 16px;
+    color: red;
+    font-weight: 500;
+    display: none;
+}
+
+.showerror {
+    display: block;
+}
+
+.flash_msg {
+    top: 12px;
+    position: absolute;
+    height: 50px;
+    width: 80%;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: rgba(240, 74, 74, 0.938);
+    border: 1px solid red;
+    display: flex;
+    align-items: center;
+    padding: 12px;
+}
