@@ -2,6 +2,7 @@
 
 <html lang="en">
 
+
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -12,6 +13,7 @@
       
     </style>
 </head>
+
 
 <body>
     <div class="grid_container">
@@ -136,7 +138,7 @@
                         <div>11</div>
                     </div>
                     <div class="pic" id="pic-button">
-                        <img alt="mypicture" height="40px" src="{{url_for('static', filename = 'images/pic1.jpg')}}"
+                        <img alt="mypicture" height="40px" src="{{url_for('static', filename = 'images/noprofile_1.jpg')}}"
                             width="40px" />
                         <div></div>
                     </div>
@@ -148,7 +150,7 @@
         </div>
         <div class="left">
             <div class="pic1">
-                <img alt="mypicture" height="28px" src="{{url_for('static', filename = 'images/pic1.jpg')}}"
+                <img alt="mypicture" height="28px" src="{{url_for('static', filename = 'images/noprofile_1.jpg')}}"
                     width="28px" />
                 <span>{{user.first_name}} {{user.last_name}}</span>
             </div>
@@ -650,7 +652,7 @@
         <div class="right">
             <div class="right-container">
                 <div class="right-header">
-                    <span>Contacts</span>
+                    <span>Friends</span>
                     <div class="search2">
                         <svg class="x19dipnz x1lliihq x1tzjh5l x1k90msu x2h7rmj x1qfuztq" fill="currentColor"
                             height="16" style="--color: var(--secondary-icon);" viewbox="0 0 16 16" width="16">
@@ -687,123 +689,17 @@
                             data-visualcompletion="ignore" role="none" style="inset: -8px;"></div>
                     </div>
                 </div>
+                {% for user in friends %}
                 <div class="right-item">
                     <div class="pic2">
-                        <img alt="" src="{{url_for('static', filename = 'images/pic2.jpg')}}" />
+                        <img alt="" src="{{url_for('static', filename = 'images/noprofile_1.jpg')}}" />
 
-                        Bolaji Makanaki
+                        {{user.first_name}} {{user.last_name}}
 
                         <div class="online"></div>
                     </div>
                 </div>
-                <div class="right-item">
-                    <div class="pic2">
-                        <img alt="" class="nostory" src="{{url_for('static', filename = 'images/pic3.jpg')}}" />
-
-                        Favour Enyinnaya
-
-                        <div class="online"></div>
-                    </div>
-                </div>
-                <div class="right-item">
-                    <div class="pic2">
-                        <img alt="" class="nostory" src="{{url_for('static', filename = 'images/pic4.jpg')}}" />
-
-                        Chidimma Hope Ike
-
-                        <div class="online"></div>
-                    </div>
-                </div>
-                <div class="right-item">
-                    <div class="pic2">
-                        <img alt="" class="nostory" src="{{url_for('static', filename = 'images/pic5.jpg')}}" />
-
-                        Mark Zuckerberg
-
-                        <div class="online"></div>
-                    </div>
-                </div>
-                <div class="right-item">
-                    <div class="pic2">
-                        <img alt="" class="nostory" src="{{url_for('static', filename = 'images/pic6.jpg')}}" />
-
-                        Bill Gates
-
-                        <div class="online"></div>
-                    </div>
-                </div>
-                <div class="right-item">
-                    <div class="pic2">
-                        <img alt="" class="nostory" src="{{url_for('static', filename = 'images/pic7.jpg')}}" />
-
-                        Elon Musk
-
-                        <div class="online"></div>
-                    </div>
-                </div>
-                <div class="right-item">
-                    <div class="pic2">
-                        <img alt="" class="nostory" src="{{url_for('static', filename = 'images/pic8.jpg')}}" />
-
-                        Bola Ahmed Tinubu
-
-                        <div class="online"></div>
-                    </div>
-                </div>
-                <div class="right-item">
-                    <div class="pic2">
-                        <img alt="" class="nostory" src="{{url_for('static', filename = 'images/pic9.jpg')}}" />
-
-                        Muhammad Buhari
-
-                        <div class="online"></div>
-                    </div>
-                </div>
-                <div class="right-item">
-                    <div class="pic2">
-                        <img alt="" class="nostory" src="{{url_for('static', filename = 'images/pic13.jpg')}}" />
-
-                        Albert Einstein
-
-                        <div class="online"></div>
-                    </div>
-                </div>
-                <div class="right-item">
-                    <div class="pic2">
-                        <img alt="" class="nostory" src="{{url_for('static', filename = 'images/pic18.jpg')}}" />
-
-                        Megan Fox
-
-                        <div class="online"></div>
-                    </div>
-                </div>
-                <div class="right-item">
-                    <div class="pic2">
-                        <img alt="" class="nostory" src="{{url_for('static', filename = 'images/pic12.jpg')}}" />
-
-                        Megan Fox
-
-                        <div class="online"></div>
-                    </div>
-                </div>
-                <div class="right-item">
-                    <div class="pic2">
-                        <img alt="" class="nostory" src="{{url_for('static', filename = 'images/pic15.jpg')}}" />
-
-                        Clark Kent
-
-                        <div class="online"></div>
-                    </div>
-                </div>
-                <div class="right-item">
-                    <div class="pic2">
-                        <img alt="" class="nostory" src="{{url_for('static', filename = 'images/pic17.jpg')}}" />
-
-                        Lebron James
-
-                        <div class="online"></div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>

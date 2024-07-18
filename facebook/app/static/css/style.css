@@ -784,13 +784,15 @@ input:focus {
 
     line-height: 1.333;
 
-    color: #050505;
+    color: #050505 !important;
 
     font-family: inherit;
 
     background-color: transparent !important;
 
     border-radius: none !important;
+
+    position: none !important;
 
 }
 

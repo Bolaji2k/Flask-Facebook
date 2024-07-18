@@ -20,15 +20,16 @@ def create_view(app):
            return redirect(url_for('login'))
 
         user = User.query.filter_by(email=session['email']).first()
+        friends = user.friends
 
-        return render_template('index.html', user=user)
+        return render_template('index.html', user=user, friends=friends)
     
     @app.route('/login', methods=['POST', 'GET'])
     def login():
         error = None
         if request.method == 'POST':
             form = request.form
-            email = form['email']
+            email = form['email'].lower()
             password = form['password'].strip()
             
             user = User.query.filter_by(email=email).first()
@@ -41,7 +42,7 @@ def create_view(app):
 
                     return redirect(url_for('index'))
                 else:
-                    flash('Invalid password')
+                    flash('Incorrect password')
             else:
               flash("invalid email")
               error = "invalid"
@@ -65,7 +66,7 @@ def create_view(app):
             last_name = form['last_name']
             gender = form['gender']
             age = form['age']
-            email = form['email']
+            email = form['email'].lower()
             password = form['password'].strip()
 
             user = User.query.filter_by(email=email).first()
@@ -98,10 +99,53 @@ def create_view(app):
     
     @app.route('/friends')
     def friends():
-        return render_template('friends.html')
+        email = session.get('email', None)
+        if email == None:
+           return redirect(url_for('login'))
+        suggestions = []
+        users = User.query.all()
+        user = User.query.filter_by(email=email).first()
+        for i in users:
+            if i.email != user.email:
+               if i not in user.friends: 
+                     if i not in user.requests:
+                             if i in user.sentrequests:
+                                 pass
+                             else:
+                               suggestions.append(i)
+        requests = user.sentrequests
+        friends = user.friends
+
+        return render_template('friends.html', suggestions=suggestions, friends=friends, requests=requests)
+    
+    @app.route('/addfriend/<user_id>')
+    def addfriend(user_id):
+        email = session.get('email', None)
+        user = User.query.filter_by(email=email).first()
+        friend = User.query.filter_by(id=user_id).first()
+        friend.sentrequests.append(user)
+        user.requests.append(friend)
+        db.session.commit()
+        flash("Friend request sent!")
+        return redirect(url_for('friends'))
+    
+    @app.route('/acceptfriend/<user_id>')
+    def acceptfriend(user_id):
+        email = session.get('email', None)
+        user = User.query.filter_by(email=email).first()
+        friend = User.query.filter_by(id=user_id).first()
+        user.sentrequests.remove(friend)
+        user.friends.append(friend)
+        friend.friends.append(user)
+        db.session.commit()
+        flash("New friend added")
+        return redirect(url_for('friends'))
     
     @app.route('/groups')
     def groups():
+        email = session.get('email', None)
+        if email == None:
+           return redirect(url_for('login'))
         return render_template('your-groups.html')
     
     @app.route('/forgot_password', methods=['GET','POST'])
@@ -109,7 +153,7 @@ def create_view(app):
         if request.method == 'POST':
             error = None
             form = request.form
-            email = form['email']
+            email = form['email'].lower()
             password = form['password'].strip()
             user = User.query.filter_by(email=email).first()
             if user:
