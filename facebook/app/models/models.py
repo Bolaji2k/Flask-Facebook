@@ -44,8 +44,9 @@ class User(db.Model):
     last_name = db.Column(db.String(100))
     email = db.Column(db.String(100), unique=True)
     gender = db.Column(db.String(7), default="Female")
-    about = db.Column(db.Text)
-    address = db.Column(db.Text)
+    about = db.Column(db.Text, nullable=True)
+    state = db.Column(db.String(100), nullable=True)
+    address = db.Column(db.Text, nullable=True)
     age = db.Column(db.SmallInteger)
     password_hash = db.Column(db.String(255))
     friends = db.relationship('User', secondary=friends,
@@ -75,6 +76,12 @@ class User(db.Model):
 
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
+    
+    def length(self):
+        num = 0
+        for i in self.friends:
+            num += 1
+        return num
 
 class Chat(db.Model):
     __tablename__ = 'chats'
@@ -84,6 +91,7 @@ class Chat(db.Model):
                               primaryjoin=(sender.c.user_id == User.id),
                               secondaryjoin=(sender.c.chat_id == id),
                               backref=db.backref('chat_of', lazy='dynamic'), lazy='dynamic')
+    
 
 class Group(db.Model):
     __tablename__ = 'groups'

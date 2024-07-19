@@ -21,6 +21,7 @@
     <div class="grid_container">
         <div class="header">
             <div class="header-left">
+                <a href="{{ url_for('index')}}">
                 <svg id="logo" class="logo" fill="currentColor" height="40" style="color:#0866FF;" viewbox="0 0 36 36" width="40">
                     <path 
                         d="M20.181 35.87C29.094 34.791 36 27.202 36 18c0-9.941-8.059-18-18-18S0 8.059 0 18c0 8.442 5.811 15.526 13.652 17.471L14 34h5.5l.681 1.87Z">
@@ -30,6 +31,7 @@
                         style="color:white;">
                     </path>
                 </svg>
+            </a>
                 <div class="search">
                     <svg fill="currentColor" height="16" style="color: #65676B;" viewbox="0 0 16 16" width="16">
                         <g fill-rule="evenodd" transform="translate(-448 -544)">
@@ -153,7 +155,7 @@
         
 {% block body %}
         <div class="left">
-            <a href=""><div class="pic1">
+            <a href="{{ url_for('profile', id=user.id)}}"><div class="pic1">
                 <img alt="mypicture" height="28px" src="{{url_for('static', filename = 'images/noprofile_1.jpg')}}"
                     width="28px" />
                 <span>{{user.first_name}} {{user.last_name}}</span>
@@ -724,7 +726,7 @@
         const groups = document.getElementById('groups')
         const logo = document.getElementById('logo')
 
-        var homeRoute = {{ url_for('index')|tojson }};
+
         var logoutRoute = {{ url_for('login')|tojson }};
         var friendsRoute = {{ url_for('friends')|tojson }};
         var groupsRoute = {{ url_for('groups')|tojson }};

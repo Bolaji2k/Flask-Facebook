@@ -975,3 +975,7 @@ input:focus {
 }
 
 @media screen and (min-width: 1024px) {}
+
+a {
+    text-decoration: none;
+}

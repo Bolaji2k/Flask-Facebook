@@ -36,6 +36,8 @@
 
         </div>
     </div>
+
+    <a href="{{ url_for('groups')}}">
     <div class="leftbox2" id="suggestions-header">
         <div class="leftbox3">
             <div class="leftbox1">
@@ -46,6 +48,7 @@
 
         </div>
     </div>
+</a>
     <div >
         <button class="confirm add-friend" id="create"> <i class="settings-icon plus"></i>Create new
 
@@ -69,7 +72,7 @@
             <span>{{ group.name }}</span>
 
             <span class="mutuals">{{ group.length() }} members • 10+ posts a day</span>
-            <button class="delete" onclick="joingroup({{group.id}})">Join group</button>
+            <a href="{{ url_for('joingroup', id=group.id)}}"><button class="delete">Join group</button></a>
         </div>
         {% endfor %}
     </div>
@@ -105,12 +108,6 @@
 {% block script %}
 <script>
 
-function joingroup(id) {
-        window.location.href = {{ url_for('joingroup', id = id) | tojson }} + `/${id}`;
-        }
-function len(num) {
-        return num.length
-        }
 
 
     const create = document.getElementById('create')
@@ -136,16 +133,7 @@ function len(num) {
     })
 
     const logo = document.getElementById('logo')
-    const suggestionsHeader = document.getElementById('suggestions-header')
-    var homeRoute = {{ url_for('index') | tojson }};
-    var yourgroupRoute = {{ url_for('groups') | tojson }};
-
-    logo.addEventListener('click', () => {
-        window.location.href = homeRoute
-    })
-    suggestionsHeader.addEventListener('click', () => {
-        window.location.href = yourgroupRoute
-    })
+ 
 
     const pic = document.getElementById('pic-button')
     const leave = document.getElementById('leave')

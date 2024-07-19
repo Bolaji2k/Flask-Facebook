@@ -80,6 +80,9 @@ def create_view(app):
                     gender=gender,
                     age=age,
                     email=email,
+                    about='',
+                    address='',
+                    state=''
                             )
                 
                 new_user.password = password
@@ -103,6 +106,12 @@ def create_view(app):
         if email == None:
            return redirect(url_for('login'))
         user = User.query.filter_by(id=id).first()
+        owner = User.query.filter_by(email=email).first()
+        if user:
+            pass
+        else:
+            flash("User does not exist")
+            redirect(url_for('index'))
 
         if request.method == 'POST':
             form = request.form
@@ -111,31 +120,43 @@ def create_view(app):
             last_name = form['last_name']
             gender = form['gender']
             age = form['age']
-            email = form['email'].lower()
-            password = form['password'].strip()
+            state = form['state'] if form['state'] else ''
+            about = form['about'] if form['about'] else ''
+            address = form['address'] if form['address'] else ''
 
-            user = User.query.filter_by(email=email).first()
-            new_user = User(
-                first_name=first_name, 
-                last_name=last_name,
-                gender=gender,
-                age=age,
-                email=email,
-                        )
+            owner.first_name = first_name
+            owner.last_name = last_name
+            owner.gender = gender
+            owner.age = age
+            owner.state = state
+            owner.address = address
+            owner.about = about
             
-            new_user.password = password
-            
-            db.session.add(new_user)
+
             try:
                 db.session.commit()
+                flash("Your profile has been updated")
             except Exception as e:
                 db.session.rollback()
                 flash(f"""{str(e)}""")
-                return redirect(url_for('login', page=1))
-            
-            return redirect(url_for('index'))
-        return render_template('profile.html', user=user)
+                return redirect(url_for('profile', id=owner.id))
+            flash("Your profile has been updated")
+            return redirect(url_for('profile', id=owner.id))
+        return render_template('profile.html', user=user, owner=owner)
     
+    @app.route('/deleteprofile', methods=['GET','POST'])
+    def deleteprofile():
+        email = session.get('email', None)
+        if email == None:
+           return redirect(url_for('login'))
+        owner = User.query.filter_by(email=email).first()
+
+        db.session.delete(owner)
+        db.session.commit()
+        flash("Your profile has been deleted")
+        return redirect(url_for('login'))
+ 
+  
     @app.route('/friends')
     def friends():
         email = session.get('email', None)
@@ -282,6 +303,36 @@ def create_view(app):
 
         db.session.commit()
         flash("Your join request has been submitted!")
+        return redirect(url_for('discovergroups'))
+    
+    @app.route('/leavegroup/<id>', methods=['GET','POST'])
+    def leavegroup(id):
+        email = session.get('email', None)
+        if email == None:
+           return redirect(url_for('login'))
+        user = User.query.filter_by(email=email).first()
+        group = Group.query.filter_by(id=id).first()
+        if user in group.grouprequests:
+            group.grouprequests.remove(user)
+            group.members.remove(user)
+        else:
+             group.members.remove(user)
+        db.session.commit()
+        flash("You've left the group!")
+        return redirect(url_for('discovergroups'))
+    
+    @app.route('/deletegroup/<id>', methods=['GET','POST'])
+    def deletegroup(id):
+        email = session.get('email', None)
+        if email == None:
+           return redirect(url_for('login'))
+        user = User.query.filter_by(email=email).first()
+        group = Group.query.filter_by(id=id).first()
+       
+        db.session.delete(group)
+        db.session.commit()
+        flash("Your group has been deleted!")
+        db.session.commit()
         return redirect(url_for('discovergroups'))
     
     @app.route('/accepttogroup/<group_id>/<user_id>', methods=['GET','POST'])
