@@ -845,6 +845,14 @@ input:focus {
     cursor: pointer;
 
 }
+.logo {
+
+    cursor: pointer;
+    z-index: 7;
+
+}
+
+
 
 @media screen and (max-width: 480px) {
 

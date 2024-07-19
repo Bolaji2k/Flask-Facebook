@@ -3,6 +3,7 @@
 <html lang="en">
 
 
+{% block head %}
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -13,14 +14,15 @@
       
     </style>
 </head>
+{% endblock %}
 
 
 <body>
     <div class="grid_container">
         <div class="header">
             <div class="header-left">
-                <svg fill="currentColor" height="40" style="color:#0866FF;" viewbox="0 0 36 36" width="40">
-                    <path
+                <svg id="logo" class="logo" fill="currentColor" height="40" style="color:#0866FF;" viewbox="0 0 36 36" width="40">
+                    <path 
                         d="M20.181 35.87C29.094 34.791 36 27.202 36 18c0-9.941-8.059-18-18-18S0 8.059 0 18c0 8.442 5.811 15.526 13.652 17.471L14 34h5.5l.681 1.87Z">
                     </path>
                     <path
@@ -148,6 +150,8 @@
                 </div>
             </div>
         </div>
+        
+{% block body %}
         <div class="left">
             <div class="pic1">
                 <img alt="mypicture" height="28px" src="{{url_for('static', filename = 'images/noprofile_1.jpg')}}"
@@ -702,7 +706,14 @@
                 {% endfor %}
             </div>
         </div>
+        {% endblock %}
     </div>
+
+    {% block script %}
+
+
+    {% endblock %}
+
     <script>
 
 
@@ -711,7 +722,9 @@
         const leave = document.getElementById('leave')
         const friends = document.getElementById('friends')
         const groups = document.getElementById('groups')
+        const logo = document.getElementById('logo')
 
+        var homeRoute = {{ url_for('index')|tojson }};
         var logoutRoute = {{ url_for('login')|tojson }};
         var friendsRoute = {{ url_for('friends')|tojson }};
         var groupsRoute = {{ url_for('groups')|tojson }};
@@ -720,6 +733,9 @@
 
         pic.addEventListener('click', () => {
             leave.classList.toggle('show3')
+        })
+        logo.addEventListener('click', () => {
+            window.location.href = homeRoute
         })
         leave.addEventListener('click', () => {
             window.location.href = logoutRoute
@@ -731,16 +747,11 @@
             window.location.href = groupsRoute
         })
 
-
-
-
-
-
-
-
+       
 
 
     </script>
+    
 
 
 

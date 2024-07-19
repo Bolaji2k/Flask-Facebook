@@ -141,11 +141,48 @@ def create_view(app):
         flash("New friend added")
         return redirect(url_for('friends'))
     
-    @app.route('/groups')
+    @app.route('/groups', methods=['GET','POST'])
     def groups():
         email = session.get('email', None)
         if email == None:
            return redirect(url_for('login'))
+        
+        if request.method == 'POST':
+            form = request.form
+
+            first_name = form['first_name']
+            last_name = form['last_name']
+            gender = form['gender']
+            age = form['age']
+            email = form['email'].lower()
+            password = form['password'].strip()
+
+            user = User.query.filter_by(email=email).first()
+
+            if user:
+                return redirect(url_for('login', page=1,error='type2'))
+            else:
+                new_user = User(
+                    first_name=first_name, 
+                    last_name=last_name,
+                    gender=gender,
+                    age=age,
+                    email=email,
+                            )
+                
+                new_user.password = password
+                
+                db.session.add(new_user)
+                try:
+                    db.session.commit()
+                except Exception as e:
+                    db.session.rollback()
+                    flash(f"""{str(e)}""")
+                    return redirect(url_for('login', page=1))
+
+                session['email'] = email
+                #flash("Welcome your account has been created")
+                return redirect(url_for('index'))
         return render_template('your-groups.html')
     
     @app.route('/forgot_password', methods=['GET','POST'])

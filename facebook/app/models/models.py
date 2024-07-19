@@ -15,6 +15,10 @@ sentrequests = db.Table('sentrequests',
     db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
     db.Column('request_id', db.Integer, db.ForeignKey('users.id'), primary_key=True)
 )
+members = db.Table('members',
+    db.Column('group_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
+    db.Column('member_id', db.Integer, db.ForeignKey('users.id'), primary_key=True)
+)
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -56,3 +60,16 @@ class User(db.Model):
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
 
+
+class Group(db.Model):
+    __tablename__ = 'groups'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100))
+    admin = db.Column(db.String(100))
+    members = db.relationship('User', secondary=members,
+                              primaryjoin=(members.c.group_id == id),
+                              secondaryjoin=(members.c.member_id == id),
+                              backref=db.backref('sentrequest_of', lazy='dynamic'), lazy='dynamic')
+
+    
