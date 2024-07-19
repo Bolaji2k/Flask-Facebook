@@ -15,9 +15,25 @@ sentrequests = db.Table('sentrequests',
     db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
     db.Column('request_id', db.Integer, db.ForeignKey('users.id'), primary_key=True)
 )
+grouprequests = db.Table('grouprequests',
+    db.Column('group_id', db.Integer, db.ForeignKey('groups.id'), primary_key=True),
+    db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True)
+)
+sender = db.Table('sender',
+    db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
+    db.Column('chat_id', db.Integer, db.ForeignKey('chats.id'), primary_key=True)
+)
 members = db.Table('members',
-    db.Column('group_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
+    db.Column('group_id', db.Integer, db.ForeignKey('groups.id'), primary_key=True),
     db.Column('member_id', db.Integer, db.ForeignKey('users.id'), primary_key=True)
+)
+groupchats = db.Table('groupchats',
+    db.Column('group_id', db.Integer, db.ForeignKey('groups.id'), primary_key=True),
+    db.Column('chat_id', db.Integer, db.ForeignKey('chats.id'), primary_key=True)
+)
+admin = db.Table('admin',
+    db.Column('group_id', db.Integer, db.ForeignKey('groups.id'), primary_key=True),
+    db.Column('admin_id', db.Integer, db.ForeignKey('users.id'), primary_key=True)
 )
 
 class User(db.Model):
@@ -60,16 +76,38 @@ class User(db.Model):
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
 
+class Chat(db.Model):
+    __tablename__ = 'chats'
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.Text)
+    sender = db.relationship('User', secondary=sender,
+                              primaryjoin=(sender.c.user_id == User.id),
+                              secondaryjoin=(sender.c.chat_id == id),
+                              backref=db.backref('chat_of', lazy='dynamic'), lazy='dynamic')
 
 class Group(db.Model):
     __tablename__ = 'groups'
-
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
-    admin = db.Column(db.String(100))
     members = db.relationship('User', secondary=members,
                               primaryjoin=(members.c.group_id == id),
-                              secondaryjoin=(members.c.member_id == id),
-                              backref=db.backref('sentrequest_of', lazy='dynamic'), lazy='dynamic')
+                              secondaryjoin=(members.c.member_id == User.id),
+                              backref=db.backref('member_of', lazy='dynamic'), lazy='dynamic')
+    admin = db.relationship('User', secondary=admin,
+                              primaryjoin=(admin.c.group_id == id),
+                              secondaryjoin=(admin.c.admin_id == User.id),
+                              backref=db.backref('admin_of', lazy='dynamic'), lazy='dynamic')
+    groupchats = db.relationship('Chat', secondary=groupchats,
+                              primaryjoin=(groupchats.c.group_id == id),
+                              secondaryjoin=(groupchats.c.chat_id == Chat.id),
+                              backref=db.backref('groupchats_of', lazy='dynamic'), lazy='dynamic')
+    grouprequests = db.relationship('User', secondary=grouprequests,
+                              primaryjoin=(grouprequests.c.group_id == id),
+                              secondaryjoin=(grouprequests.c.user_id == User.id),
+                              backref=db.backref('grouprequests_of', lazy='dynamic'), lazy='dynamic')
 
-    
+    def length(self):
+        num = 0
+        for i in self.members:
+            num += 1
+        return num

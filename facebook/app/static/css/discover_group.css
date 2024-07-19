@@ -827,3 +827,22 @@
     border-color: #3b6e22 #3b6e22 #2c5115;
 
 }
+
+
+.flash_msg {
+    top: 10px;
+    left: 150px;
+    position: absolute;
+    height: 50px;
+    width: 80%;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: rgba(74, 151, 240, 0.938);
+    border: 1px solid rgb(25, 0, 255);
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    z-index: 13;
+}

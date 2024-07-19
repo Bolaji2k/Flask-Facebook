@@ -153,11 +153,11 @@
         
 {% block body %}
         <div class="left">
-            <div class="pic1">
+            <a href=""><div class="pic1">
                 <img alt="mypicture" height="28px" src="{{url_for('static', filename = 'images/noprofile_1.jpg')}}"
                     width="28px" />
                 <span>{{user.first_name}} {{user.last_name}}</span>
-            </div>
+            </div></a>
             <div class="left-item" id="friends">
                 <i class="sideicons" data-visualcompletion="css-img"></i>
                 <span>Friends</span>
