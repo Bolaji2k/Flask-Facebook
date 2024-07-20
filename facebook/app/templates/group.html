@@ -315,11 +315,8 @@
         username = name
         group_id = id
         user_id = id2
-        // console.log(username)
-        // console.log(group_id)
-        // console.log(user_id)
       }
-      //var sendButton = document.getElementById("send");
+  
 
       form.addEventListener("submit", function (e) {
         e.preventDefault();
@@ -336,7 +333,7 @@
       });
 
       socket.on("message", function (data) {
-        console.log(user_id)
+        chatwelcome.style.display = 'none'
         if (data.group_id == groupID) {
         var chat = document.createElement("div");
         if (user_id == data.user_id) {
