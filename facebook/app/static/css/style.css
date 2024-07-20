@@ -346,12 +346,12 @@ input:focus {
 
 
 .pic2 img {
+    flex-shrink: 0;
     border-radius: 50%;
     height: 26px;
     width: 26px;
     border: 0.114em solid #FFFFFF;
     outline: 0.114em solid #0866FF;
-
 }
 
 .nostory {
@@ -363,7 +363,7 @@ input:focus {
     display: flex;
     align-items: center;
     height: 26px;
-    width: 26px;
+    width: 26px !important;
     gap: 10px;
     position: relative;
     text-wrap: nowrap;

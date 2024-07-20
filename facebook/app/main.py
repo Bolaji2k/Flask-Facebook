@@ -3,7 +3,8 @@ from flask import Flask
 from flask_migrate import Migrate
 from .models.models import db
 from .views.views import create_view
-from  .admins.admin import admin 
+from  .admins.admin import admin
+from flask_socketio import SocketIO
 
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -19,6 +20,8 @@ def create_app():
 
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{os.path.join(basedir, 'data.sqlite')}'
     app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False 
+
+    socketio = SocketIO(app, cors_allowed_origins="*")
 
 
     db.init_app(app)
