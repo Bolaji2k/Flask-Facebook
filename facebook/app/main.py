@@ -12,6 +12,9 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 def create_app():
     app = Flask(__name__)
+
+    app.config["UPLOAD_EXTENSIONS"] = [".jpg", ".png"]
+    app.config["UPLOAD_PATH"] = "static/images/uploads"
     app.config['SECRET_KEY'] = "weertyuijkopl"
 
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{os.path.join(basedir, 'data.sqlite')}'

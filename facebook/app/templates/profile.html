@@ -17,16 +17,30 @@
       
         <div class="center">
             <div class="profile-background">
+                {% if user.cover_img %}
+                <img alt="" class="blur" src="{{url_for('static', filename = 'images/uploads/'+ user.cover_img)}}" />
+                {% else %}
                 <img alt="" class="blur" src="{{url_for('static', filename = 'images/pic19.jpg')}}" />
+                {% endif %}
                 <div class="gradient"></div>
                 <div class="gradient2"></div>
                 <div class="profile-box">
                     <div class="cover-photo">
+                        {% if user.cover_img %}
+                        <img alt="" class="og" src="{{url_for('static', filename = 'images/uploads/'+ user.cover_img)}}" />
+                        {% else %}
                         <img alt="" class="og" src="{{url_for('static', filename = 'images/pic19.jpg')}}" />
+                        {% endif %}
                     </div>
                     <div class="profile-name">
                         <div class="profile-pic">
+                            <div class="image-resize">
+                            {% if user.profile_img %}
+                            <img alt="" src="{{url_for('static', filename = 'images/uploads/'+ user.profile_img)}}" />
+                            {% else %}
                             <img alt="" src="{{url_for('static', filename = 'images/blankpic.webp')}}" />
+                            {% endif %}
+                        </div>
                             <div class="name">
                                 <h1>{{user.first_name}} {{user.last_name}}</h1>
                                 <span>{{user.length()}} friends</span>
@@ -127,7 +141,7 @@
                     <div class="modtext1">Profile</div>
                     <div class="modtext2">Make changes to your profile.</div>
                 </div>
-                <form action="{{ url_for('profile', id=owner.id)}}" method="post" class="form2">
+                <form action="{{ url_for('profile', id=owner.id)}}" method="post" class="form2" enctype="multipart/form-data">
                     <div class="input_2">
                         <div class="modbox1">
                             <input class="type1" id="firstname" name="first_name" placeholder="First name" type="text" required value="{{user.first_name}}"/>
@@ -139,6 +153,10 @@
                             type="text" value="{{user.address}}"/>
                         <input class="type2" id="state" name="state" placeholder="State"
                             type="text" value="{{user.state}}"/>
+                        <label for="profileImg">Profile picture</label>
+                        <input type="file" name="profileImg" id="profileImg">
+                        <label for="coverImg" style="display: block;">Cover photo</label>
+                        <input type="file" name="coverImg" id="coverImg">
                     
     
                         <div>

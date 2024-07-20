@@ -36,6 +36,14 @@ admin = db.Table('admin',
     db.Column('admin_id', db.Integer, db.ForeignKey('users.id'), primary_key=True)
 )
 
+
+
+class Image(db.Model):
+    __tablename__ = 'images'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=True)
+    file_path = db.Column(db.String(100), nullable=True)
+
 class User(db.Model):
     __tablename__ = 'users'
 
@@ -49,6 +57,8 @@ class User(db.Model):
     address = db.Column(db.Text, nullable=True)
     age = db.Column(db.SmallInteger)
     password_hash = db.Column(db.String(255))
+    profile_img = db.Column(db.String(255), nullable=True)
+    cover_img = db.Column(db.String(255), nullable=True)
     friends = db.relationship('User', secondary=friends,
                               primaryjoin=(friends.c.user_id == id),
                               secondaryjoin=(friends.c.friend_id == id),
@@ -62,6 +72,7 @@ class User(db.Model):
                               primaryjoin=(sentrequests.c.user_id == id),
                               secondaryjoin=(sentrequests.c.request_id == id),
                               backref=db.backref('sentrequest_of', lazy='dynamic'), lazy='dynamic')
+
 
     def __repr__(self) -> str:
         return f'<User {self.email}>'
@@ -119,3 +130,5 @@ class Group(db.Model):
         for i in self.members:
             num += 1
         return num
+
+

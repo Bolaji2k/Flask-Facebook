@@ -487,11 +487,15 @@ input:focus {
 
 .add-story {
     position: relative;
-    height: 250px;
+    height: 250px !important;
+    overflow: hidden;
+    border-radius: 10px;
 }
 
 .add-story img {
-    height: 230px !important;
+    margin-left: -50px;
+    width:  250px !important;
+    height: 300px;
 }
 
 .make-post {

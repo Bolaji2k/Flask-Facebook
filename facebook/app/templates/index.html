@@ -142,9 +142,26 @@
                         <div>11</div>
                     </div>
                     <div class="pic" id="pic-button">
+                        {% if user != owner %}
+                        {% if owner.profile_img %}
+                        <img alt="mypicture" height="40px" src="{{url_for('static', filename = 'images/uploads/'+ owner.profile_img)}}"
+                            width="40px" />
+                            {% else %}
                         <img alt="mypicture" height="40px" src="{{url_for('static', filename = 'images/noprofile_1.jpg')}}"
                             width="40px" />
+                            {% endif %}
                         <div></div>
+                        {% else%}
+                        {% if user.profile_img %}
+                        <img alt="mypicture" height="40px" src="{{url_for('static', filename = 'images/uploads/'+ user.profile_img)}}"
+                            width="40px" />
+                            {% else %}
+                        <img alt="mypicture" height="40px" src="{{url_for('static', filename = 'images/noprofile_1.jpg')}}"
+                            width="40px" />
+                            {% endif %}
+                        <div></div>
+                        {% endif %}
+
                     </div>
                     <div class="modbox0" id="leave">
                         <div class="logout"><i class="logoutIcon"></i> Log out</div>
@@ -156,8 +173,13 @@
 {% block body %}
         <div class="left">
             <a href="{{ url_for('profile', id=user.id)}}"><div class="pic1">
+                {% if user.profile_img %}
+                <img alt="mypicture" height="28px" src="{{url_for('static', filename = 'images/uploads/'+ user.profile_img)}}"
+                    width="28px" />
+                    {% else %}
                 <img alt="mypicture" height="28px" src="{{url_for('static', filename = 'images/noprofile_1.jpg')}}"
                     width="28px" />
+                    {% endif %}
                 <span>{{user.first_name}} {{user.last_name}}</span>
             </div></a>
             <div class="left-item" id="friends">
@@ -264,7 +286,11 @@
         <div class="center">
             <div class="story">
                 <div class="add-story">
+                    {% if user.profile_img %}
+                    <img alt="" src="{{url_for('static', filename = 'images/uploads/'+ user.profile_img)}}" />
+                    {% else %}
                     <img alt="" src="{{url_for('static', filename = 'images/pic1.jpg')}}" />
+                    {% endif %}
                     <div class="story-button">
                         <div class="button-bg1">
                             <div class="button-bg2">
@@ -341,8 +367,12 @@
             </div>
             <div class="make-post">
                 <div class="post-top">
-                    <img alt="" src="{{url_for('static', filename = 'images/pic1.jpg')}}" />
-                    <div class="make-post-button">What's on your mind, Mr. Maduka?</div>
+                    {% if user.profile_img %}
+                    <img alt="" src="{{url_for('static', filename = 'images/uploads/'+ user.profile_img)}}" />
+                    {% else %}
+                    <img alt="" src="{{url_for('static', filename = 'images/noprofile_1.jpg')}}" />
+                    {% endif %}
+                    <div class="make-post-button">What's on your mind, {{user.first_name}} {{user.last_name}}?</div>
                 </div>
                 <div class="post-bottom">
                     <div class="make-post-item">
@@ -698,8 +728,11 @@
                 {% for user in friends %}
                 <div class="right-item">
                     <div class="pic2">
+                        {% if user.profile_img %}
+                        <img alt="" src="{{url_for('static', filename = 'images/uploads/'+ user.profile_img)}}" />
+                        {% else %}
                         <img alt="" src="{{url_for('static', filename = 'images/noprofile_1.jpg')}}" />
-
+                        {% endif %}
                         {{user.first_name}} {{user.last_name}}
 
                         <div class="online"></div>
@@ -757,7 +790,6 @@
 
 
 
-    pic-button
 
 </body>
 

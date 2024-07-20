@@ -73,7 +73,11 @@
         {% for user in friends %}
         <div class="centerbox2 card1">
             <div class="centerbox3">
+                {% if user.profile_img %}
+                <img alt="" src="{{url_for('static', filename = 'images/uploads/'+ user.profile_img)}}" />
+                {% else %}
                 <img alt="" src="{{url_for('static', filename = 'images/blankpic.webp')}}" />
+                {% endif %}
             </div>
             <span>{{user.first_name}} {{user.last_name}}</span>
             <span class="mutuals">10 mutual friends</span>
@@ -94,7 +98,11 @@
         {% for user in suggestions %}
         <div class="centerbox2">
             <div class="centerbox3">
+                {% if user.profile_img %}
+                <img alt="" src="{{url_for('static', filename = 'images/uploads/'+ user.profile_img)}}" />
+                {% else %}
                 <img alt="" src="{{url_for('static', filename = 'images/blankpic.webp')}}" />
+                {% endif %}
             </div>
             <span>{{user.first_name}} {{user.last_name}}</span>
             <button class="confirm add-friend" onclick="addFriend({{user.id}})">Add Friend</button>
@@ -115,7 +123,11 @@
         {% for user in requests %}
         <div class="centerbox2">
             <div class="centerbox3">
+                {% if user.profile_img %}
+                <img alt="" src="{{url_for('static', filename = 'images/uploads/'+ user.profile_img)}}" />
+                {% else %}
                 <img alt="" src="{{url_for('static', filename = 'images/blankpic.webp')}}" />
+                {% endif %}
             </div>
             <span>{{user.first_name}} {{user.last_name}}</span>
             <button class="confirm" onclick="acceptFriend({{user.id}})">Confirm</button>

@@ -1,9 +1,14 @@
-from flask import render_template, request, session
+from flask import render_template, request, session, send_from_directory
 from flask import make_response
 from flask import url_for, flash
 from flask import redirect
-from ..models.models import User, Group, db
+from ..models.models import User, Group, Image, db
 from werkzeug.security import generate_password_hash
+import os
+import imghdr
+import uuid
+from flask import request, session
+from werkzeug.utils import secure_filename
 
 
 
@@ -20,9 +25,10 @@ def create_view(app):
            return redirect(url_for('login'))
 
         user = User.query.filter_by(email=session['email']).first()
+        owner = User.query.filter_by(email=session['email']).first()
         friends = user.friends
 
-        return render_template('index.html', user=user, friends=friends)
+        return render_template('index.html', user=user, friends=friends, owner=owner)
     
     @app.route('/login', methods=['POST', 'GET'])
     def login():
@@ -100,6 +106,35 @@ def create_view(app):
                 return redirect(url_for('index'))
         return render_template('login.html')
     
+    def validate_image(stream):
+        header = stream.read(512)
+        stream.seek(0)
+        format = imghdr.what(None, header)
+        if not format:
+            return None
+        return "." + (format if format != "jpeg" else "jpg")
+    
+    def post(image):
+        if secure_filename(image.filename) in [img.file_path for img in Image.query.all()]:
+                unique_str = str(uuid.uuid4())[:8]
+                image.filename = f"{unique_str}_{image.filename}"
+
+
+        #  handling file uploads
+        filename = secure_filename(image.filename)
+        if filename:
+            file_ext = os.path.splitext(filename)[1]
+            if file_ext not in app.config[
+                "UPLOAD_EXTENSIONS"
+            ] or file_ext != validate_image(image.stream):
+                return {"error": "File type not supported"}, 400
+
+            image.save(os.path.join(app.config["UPLOAD_PATH"], filename))
+
+            img = Image(name='profile photo', file_path=filename)
+            db.session.add(img)
+        return filename
+
     @app.route('/profile/<id>', methods=['GET','POST'])
     def profile(id):
         email = session.get('email', None)
@@ -114,6 +149,7 @@ def create_view(app):
             redirect(url_for('index'))
 
         if request.method == 'POST':
+
             form = request.form
 
             first_name = form['first_name']
@@ -123,6 +159,35 @@ def create_view(app):
             state = form['state'] if form['state'] else ''
             about = form['about'] if form['about'] else ''
             address = form['address'] if form['address'] else ''
+            image = request.files["profileImg"]
+            coverimage = request.files["coverImg"]
+
+            if secure_filename(image.filename) in [img.file_path for img in Image.query.all()]:
+                unique_str = str(uuid.uuid4())[:8]
+                image.filename = f"{unique_str}_{image.filename}"
+
+        #  handling file uploads
+            def post(Img):
+                filename = secure_filename(Img.filename)
+                if filename:
+                    file_ext = os.path.splitext(filename)[1]
+                    if file_ext not in app.config[
+                        "UPLOAD_EXTENSIONS"
+                    ] or file_ext != validate_image(Img.stream):
+                        return {"error": "File type not supported"}, 400
+
+                    Img.save(os.path.join(app.config["UPLOAD_PATH"], filename))
+
+                    img = Image(name='profile photo', file_path=filename)
+                    db.session.add(img)
+                    return filename
+            if image:
+              pic1 = post(image)
+              owner.profile_img = pic1
+            if coverimage:
+              pic2 = post(coverimage)
+              owner.cover_img = pic2
+            
 
             owner.first_name = first_name
             owner.last_name = last_name
@@ -131,7 +196,9 @@ def create_view(app):
             owner.state = state
             owner.address = address
             owner.about = about
+          
             
+
 
             try:
                 db.session.commit()
@@ -165,6 +232,7 @@ def create_view(app):
         suggestions = []
         users = User.query.all()
         user = User.query.filter_by(email=email).first()
+        owner = User.query.filter_by(email=email).first()
         for i in users:
             if i.email != user.email:
                if i not in user.friends: 
@@ -176,7 +244,7 @@ def create_view(app):
         requests = user.sentrequests
         friends = user.friends
 
-        return render_template('friends.html', suggestions=suggestions, friends=friends, requests=requests)
+        return render_template('friends.html', suggestions=suggestions, friends=friends, requests=requests, owner=owner)
     
     @app.route('/addfriend/<user_id>')
     def addfriend(user_id):
@@ -222,6 +290,7 @@ def create_view(app):
         if email == None:
            return redirect(url_for('login'))
         user = User.query.filter_by(email=email).first()
+        owner = User.query.filter_by(email=email).first()
         group = Group.query.filter_by(id=id).first()
         suggestions = []
         users = User.query.all()
@@ -238,20 +307,19 @@ def create_view(app):
             name = form['group_name']
             user = User.query.filter_by(email=email).first()
             
-        return render_template('group.html', group=group, user=user, suggestions=suggestions)
+        return render_template('group.html', group=group, user=user, suggestions=suggestions, owner=owner)
     
     @app.route('/groups', methods=['GET','POST'])
     def groups():
         email = session.get('email', None)
         if email == None:
            return redirect(url_for('login'))
-        
+        owner = User.query.filter_by(email=email).first()
         if request.method == 'POST':
             form = request.form
 
             name = form['group_name']
             user = User.query.filter_by(email=email).first()
-
             new_group = Group(
                 name=name, 
                         )
@@ -273,7 +341,7 @@ def create_view(app):
         groups = user.member_of
 
 
-        return render_template('your-groups.html', groups=groups, user=user)
+        return render_template('your-groups.html', groups=groups, user=user, owner=owner)
     
     @app.route('/discovergroups', methods=['GET','POST'])
     def discovergroups():
@@ -283,6 +351,7 @@ def create_view(app):
         
         groups = []
         allgroups = Group.query.all()
+        owner = User.query.filter_by(email=email).first()
         user = User.query.filter_by(email=email).first()
         for i in allgroups:
             if i not in user.member_of:
@@ -290,7 +359,7 @@ def create_view(app):
                 groups.append(i)
         
     
-        return render_template('discover_group.html', groups=groups)
+        return render_template('discover_group.html', groups=groups, user=user, owner=owner)
     
     @app.route('/joingroup/<id>', methods=['GET','POST'])
     def joingroup(id):
