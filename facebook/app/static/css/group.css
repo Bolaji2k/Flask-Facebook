@@ -1349,6 +1349,12 @@
 
 }
 
+.admin {
+    color: rgb(18, 248, 49);
+    font-weight: 500;
+    padding-left: 30px;
+}
+
 
 
 .color2 {
@@ -1508,4 +1514,30 @@
 
 .right-item {
     flex-direction: row !important;
+}
+
+
+@media screen and (max-width: 480px) {
+
+    .grid_container {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-areas:
+            "header"
+            "center"
+        ;
+        background-color: #F0F2F5;
+        grid-template-rows: 56px 3000px;
+        row-gap: 16px;
+    }
+
+    .left {
+        display: none;
+    }
+
+    .right {
+        display: none;
+    }
+
+
 }

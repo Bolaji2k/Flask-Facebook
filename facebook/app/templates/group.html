@@ -177,6 +177,9 @@
                 {{user.first_name}} {{user.last_name}}
 
                 <div class="online"></div>
+                {% if user in group.admin %}
+                <div class="admin">admin</div>
+                {% endif %}
             </div>
         </div>
         {% endfor %}
@@ -243,9 +246,9 @@
             </div>
             {% endif %}
             {% endfor %}
-            <form action="#" class="form2">
+            <form action="{{ url_for('group',id=group.id)}}" method="post" class="form2">
                 <div class="input_2">
-                    <input class="type2" id="group" name="group_name" placeholder="Group name" type="text" />
+                    <input class="type2" id="group" name="group_name" placeholder="Group name" type="text" value="{{group.name}}"/>
                     <div class="modbox3">
                         <button class="button1">Save changes</button>
                     </div>

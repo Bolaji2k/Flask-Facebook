@@ -327,9 +327,9 @@ def create_view(app):
 
         if request.method == 'POST':
             form = request.form
-
             name = form['group_name']
-            user = User.query.filter_by(email=email).first()
+            group.name = name
+            db.session.commit()
             
         return render_template('group.html', group=group, user=user, suggestions=suggestions, owner=owner)
     
