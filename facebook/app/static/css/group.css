@@ -1162,7 +1162,6 @@
 
 .box1 {
 
-    margin-top: -10px;
 
     display: flex;
 
@@ -1505,4 +1504,8 @@
 
 .chatmessage {
     text-align: center;
+}
+
+.right-item {
+    flex-direction: row !important;
 }

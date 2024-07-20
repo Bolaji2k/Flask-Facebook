@@ -14,7 +14,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 def create_app():
     app = Flask(__name__)
 
-    app.config["UPLOAD_EXTENSIONS"] = [".jpg", ".png"]
+    app.config["UPLOAD_EXTENSIONS"] = [".jpg", ".png", ".jpeg"]
     app.config["UPLOAD_PATH"] = "static/images/uploads"
     app.config['SECRET_KEY'] = "weertyuijkopl"
 

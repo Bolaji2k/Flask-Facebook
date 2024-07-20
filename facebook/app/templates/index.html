@@ -727,7 +727,7 @@
                 </div>
                 {% for user in friends %}
                 <div class="right-item">
-                    <div class="pic2">
+                    <a class="profilelink" href="{{ url_for('profile', id=user.id)}}"><div class="pic2">
                         {% if user.profile_img %}
                         <img alt="" src="{{url_for('static', filename = 'images/uploads/'+ user.profile_img)}}" />
                         {% else %}
@@ -735,7 +735,7 @@
                         {% endif %}
                         {{user.first_name}} {{user.last_name}}
 
-                        <div class="online"></div>
+                        <div class="online"></div></a>
                     </div>
                 </div>
                 {% endfor %}

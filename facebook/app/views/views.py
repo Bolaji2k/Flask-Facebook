@@ -28,7 +28,6 @@ def create_view(app):
             content = message,
         )
         #print(f'Message from {socket_id}: {message}')
-        flash("message sent")
         socketio.emit('message', {'message': message, 'socket_id': socket_id, 'username': username, 'group_id': group_id , 'user_id': user_id})
         db.session.add(new_chat)
         new_chat.sender.append(user)
@@ -149,6 +148,7 @@ def create_view(app):
             if file_ext not in app.config[
                 "UPLOAD_EXTENSIONS"
             ] or file_ext != validate_image(image.stream):
+                flash("File type not supported")
                 return {"error": "File type not supported"}, 400
 
             image.save(os.path.join(app.config["UPLOAD_PATH"], filename))
@@ -196,6 +196,7 @@ def create_view(app):
                     if file_ext not in app.config[
                         "UPLOAD_EXTENSIONS"
                     ] or file_ext != validate_image(Img.stream):
+                        flash("File type not supported")
                         return {"error": "File type not supported"}, 400
 
                     Img.save(os.path.join(app.config["UPLOAD_PATH"], filename))
@@ -227,7 +228,8 @@ def create_view(app):
                 flash("Your profile has been updated")
             except Exception as e:
                 db.session.rollback()
-                flash(f"""{str(e)}""")
+                flash("File type not supported! upload a supported type")
+                #flash(f"""{str(e)}""")
                 return redirect(url_for('profile', id=owner.id))
             flash("Your profile has been updated")
             return redirect(url_for('profile', id=owner.id))

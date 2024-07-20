@@ -79,7 +79,7 @@
 
 .profile-pic img {
 
-    width: 168px;
+    width: 200px;
 
     height: 200px;
 
@@ -87,6 +87,9 @@
 }
 
 .image-resize {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
 
     width: 168px;

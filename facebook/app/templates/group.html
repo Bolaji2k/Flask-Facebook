@@ -301,14 +301,15 @@
       var socket = io();
 
       var form = document.getElementById("chatform");
-      var chatwelcome = document.getElementById("chatwelcome");
+      
       var input = document.getElementById("chat");
       var username = ''
       var group_id = ''
       var user_id = ''
 
       function removeMsg() {
-        chatwelcome.style.display = 'none'
+        if ( document.getElementById("chatwelcome")) {
+            document.getElementById("chatwelcome").style.display = 'none'}
       }
 
       function setdata(name,id,id2) {
@@ -333,7 +334,8 @@
       });
 
       socket.on("message", function (data) {
-        chatwelcome.style.display = 'none'
+        if ( document.getElementById("chatwelcome")) {
+            document.getElementById("chatwelcome").style.display = 'none'}
         if (data.group_id == groupID) {
         var chat = document.createElement("div");
         if (user_id == data.user_id) {
