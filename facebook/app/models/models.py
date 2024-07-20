@@ -99,8 +99,8 @@ class Chat(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text)
     sender = db.relationship('User', secondary=sender,
-                              primaryjoin=(sender.c.user_id == User.id),
-                              secondaryjoin=(sender.c.chat_id == id),
+                              primaryjoin=(sender.c.chat_id == id),
+                              secondaryjoin=(sender.c.user_id == User.id),
                               backref=db.backref('chat_of', lazy='dynamic'), lazy='dynamic')
     
 
@@ -128,6 +128,11 @@ class Group(db.Model):
     def length(self):
         num = 0
         for i in self.members:
+            num += 1
+        return num
+    def chatlength(self):
+        num = 0
+        for i in self.groupchats:
             num += 1
         return num
 

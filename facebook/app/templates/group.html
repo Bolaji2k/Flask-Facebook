@@ -70,23 +70,39 @@
             </div>
             {% endif %}
         </div>
-        <div class="chatbox">
+        <div class="chatbox" id="chatbox">
+            {% if group.groupchats %}
+                {% for chat in group.groupchats %}
+                   {% if chat.sender[0] == user %}
+              <div class="chatbox2">
+                <div class="username color2">{{chat.sender[0].first_name}} {{chat.sender[0].last_name}}</div>
+                <span>{{ chat.content }}</span>
+            </div>
+                   {% else %}
             <div class="chatbox1">
-                <div class="username color1">Bolaji Makanaki</div>
-                <span>Hello</span>
+                <div class="username color1">{{chat.sender[0].first_name}} {{chat.sender[0].last_name}}</div>
+                <span>{{ chat.content }}</span>
             </div>
-            <div class="chatbox2">
-                <div class="username color2">Bolaji Makanaki</div>
-                <span>Welcome</span>
+                   {% endif %}
+                {% endfor %}
+            {% endif %}
+            {% if group.chatlength() == 0 %}
+            <div class="chatmessage" id="chatwelcome">
+                <div class="username color2">Welcome!</div>
+                <span>Start chatting to start a conversaion, say Hi.</span>
             </div>
+            {% endif %}
         </div>
-        <div class="groupbox1 typebox">
-            <input class="chat-input" id="chatbox" name="chatbox" placeholder="Say something" type="text" />
+        <form action="" id="chatform">
+            <div class="groupbox1 typebox">
+            <input class="chat-input" id="chat" name="chat" placeholder="Say something" type="text" oninput="setdata('{{user.first_name}} {{user.last_name}}', {{group.id}}, {{user.id}})"/>
             <div class="modbox5" id="more">
-                <button class="delete more2"><i class="more-icon"></i>
+                <button class="delete more2" onclick="removeMsg()"><i class="more-icon"></i>
                 </button>
             </div>
         </div>
+        </form>
+        
     </div>
 </div>
 </div>
@@ -275,9 +291,73 @@
     {% endblock body %}
 
     {% block script %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
+
+
     <script>
+      const chatbox = document.getElementById("chatbox")
+      chatbox.scrollTop = chatbox.scrollHeight;
+      const groupID = window.location.pathname.split('/')[2];
+      var socket = io();
 
+      var form = document.getElementById("chatform");
+      var chatwelcome = document.getElementById("chatwelcome");
+      var input = document.getElementById("chat");
+      var username = ''
+      var group_id = ''
+      var user_id = ''
 
+      function removeMsg() {
+        chatwelcome.style.display = 'none'
+      }
+
+      function setdata(name,id,id2) {
+        username = name
+        group_id = id
+        user_id = id2
+        // console.log(username)
+        // console.log(group_id)
+        // console.log(user_id)
+      }
+      //var sendButton = document.getElementById("send");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (input.value.trim() !== "") {
+          socket.emit("message", {
+            message: input.value,
+            username: username,
+            group_id: group_id,
+            socket_id: socket.id,
+            user_id: user_id
+          });
+          input.value = "";
+        }
+      });
+
+      socket.on("message", function (data) {
+        console.log(user_id)
+        if (data.group_id == groupID) {
+        var chat = document.createElement("div");
+        if (user_id == data.user_id) {
+          chat.classList.add("chatbox2");
+          chat.innerHTML = `<div class="username color2">${data.username}</div>
+                <span>${data.message}</span>`
+          //chat.textContent = "You: " + data.message;
+        } else {
+          chat.classList.add("chatbox1");
+          chat.innerHTML = `<div class="username color1">${data.username}</div>
+                <span>${data.message}</span>`
+          //chat.textContent = data.socket_id + ": " + data.message;
+        }
+        document.getElementById("chatbox").appendChild(chat);
+        const chatbox = document.getElementById("chatbox")
+        chatbox.scrollTop = chatbox.scrollHeight;
+    }
+      });
+    </script>
+
+    <script>
         const discoverHeader = document.getElementById('friends-header')
         var discovergroupRoute = {{ url_for('discovergroups') | tojson }};
 

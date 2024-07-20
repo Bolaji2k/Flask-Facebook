@@ -21,9 +21,6 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{os.path.join(basedir, 'data.sqlite')}'
     app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False 
 
-    socketio = SocketIO(app, cors_allowed_origins="*")
-
-
     db.init_app(app)
     admin.init_app(app)
     migrate = Migrate(app, db)
@@ -31,10 +28,15 @@ def create_app():
     app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
 
     create_view(app)
+  
 
     return app
 
 
 if __name__ == '__main__':
     app = create_app()
+
+
+    
+
 

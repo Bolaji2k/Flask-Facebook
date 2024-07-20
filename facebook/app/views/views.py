@@ -2,17 +2,39 @@ from flask import render_template, request, session, send_from_directory
 from flask import make_response
 from flask import url_for, flash
 from flask import redirect
-from ..models.models import User, Group, Image, db
+from ..models.models import User, Group, Image, Chat, db
 from werkzeug.security import generate_password_hash
 import os
 import imghdr
 import uuid
 from flask import request, session
 from werkzeug.utils import secure_filename
-
+from flask_socketio import SocketIO
 
 
 def create_view(app):
+    socketio = SocketIO(app, cors_allowed_origins="*")
+    socketio.run(app, host='0.0.0.0', port=5000, debug=True)
+    @socketio.on('message')
+    def handle_message(data):
+        message = data['message']
+        username = data['username']
+        group_id = data['group_id']
+        user_id = data['user_id']
+        socket_id = data['socket_id']
+        user = User.query.filter_by(id=user_id).first()
+        group = Group.query.filter_by(id=group_id).first()
+        new_chat =  Chat(
+            content = message,
+        )
+        #print(f'Message from {socket_id}: {message}')
+        flash("message sent")
+        socketio.emit('message', {'message': message, 'socket_id': socket_id, 'username': username, 'group_id': group_id , 'user_id': user_id})
+        db.session.add(new_chat)
+        new_chat.sender.append(user)
+        group.groupchats.append(new_chat)
+        db.session.commit()
+
     def is_authenticated():
         email = session.get('email', None)
         if email == None:
