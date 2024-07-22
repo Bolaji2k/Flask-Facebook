@@ -32,7 +32,7 @@ body {
     position: fixed;
     height: 56px;
     width: 100%;
-    z-index: 2;
+    z-index: 5;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -688,29 +688,32 @@ input:focus {
 }
 
 .emoji1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     left: 0;
     z-index: 3;
-    top: 12px;
     height: 20px;
-    width: 20px;
+    width: 22px;
     background-color: #FFFFFF;
     border-radius: 50%;
 }
 
 .emoji2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    left: 18px;
-    top: 12px;
+    left: 16px;
     z-index: 2;
     height: 20px;
-    width: 20px;
+    width: 22px;
     background-color: #FFFFFF;
     border-radius: 50%;
 }
 
 .emoji3 {
-    top: 10px;
     display: flex;
     align-items: center;
     position: absolute;
@@ -877,6 +880,12 @@ input:focus {
 
 }
 
+.username1 {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
 
 
 @media screen and (max-width: 480px) {
@@ -897,9 +906,57 @@ input:focus {
         display: none;
     }
 
-    .right {
+    .right, .username1 {
         display: none;
     }
+
+    .make-post, .post{
+        width: 100%;
+    }
+
+    .center {
+        width: 100%;
+        overflow: hidden;
+        display: block;
+    }
+
+    .add-story {
+        width: 140.633px; 
+    }
+
+    .story {
+        flex-shrink: 0;
+    }
+
+    .story-container {
+        width: 100%;
+        overflow: auto;
+    }
+
+    .post-top, .post-bottom, .reaction-top, .post-reaction, .reaction-bottom {
+        width: 100%;
+    }
+
+    .make-post-item{
+        width: fit-content;
+    }
+
+    .post-bottom {
+        padding: 12px;
+        justify-content: space-between;
+    }
+
+    .make-post-button {
+        width: 80%;
+    }
+
+    .reaction-top {
+        padding: 0 12px;
+    }
+
+
+
+ 
 
 
 }

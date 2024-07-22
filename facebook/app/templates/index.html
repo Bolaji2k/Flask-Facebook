@@ -284,7 +284,8 @@
  -->
         </div>
         <div class="center">
-            <div class="story">
+            <div class="story-container">
+                <div class="story">
                 <div class="add-story">
                     {% if user.profile_img %}
                     <img alt="" src="{{url_for('static', filename = 'images/uploads/'+ user.profile_img)}}" />
@@ -364,7 +365,9 @@
                         <span>Davido</span>
                     </div>
                 </div>
+            </div> 
             </div>
+           
             <div class="make-post">
                 <div class="post-top">
                     {% if user.profile_img %}
@@ -372,7 +375,7 @@
                     {% else %}
                     <img alt="" src="{{url_for('static', filename = 'images/noprofile_1.jpg')}}" />
                     {% endif %}
-                    <div class="make-post-button">What's on your mind, {{user.first_name}} {{user.last_name}}?</div>
+                    <div class="make-post-button">What's on your mind<span class="username1">, {{user.first_name}} {{user.last_name}}</span>?</div>
                 </div>
                 <div class="post-bottom">
                     <div class="make-post-item">

@@ -133,7 +133,8 @@ def create_view(app):
         format = imghdr.what(None, header)
         if not format:
             return None
-        return "." + (format if format != "jpeg" else "jpg")
+        #return "." + (format if format != "jpeg" else "jpg")
+        return "." + format
     
     def post(image):
         if secure_filename(image.filename) in [img.file_path for img in Image.query.all()]:
@@ -288,8 +289,10 @@ def create_view(app):
         friend = User.query.filter_by(id=user_id).first()
         if user in friend.sentrequests:
           friend.sentrequests.remove(user)
+          friend.requests.remove(user)
         if friend in user.requests:
           user.requests.remove(friend)
+          friend.requests.remove(user)
         user.friends.remove(friend)
         friend.friends.remove(user)
         db.session.commit()
