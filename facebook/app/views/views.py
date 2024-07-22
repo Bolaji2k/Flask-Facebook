@@ -276,10 +276,13 @@ def create_view(app):
         email = session.get('email', None)
         user = User.query.filter_by(email=email).first()
         friend = User.query.filter_by(id=user_id).first()
-        friend.sentrequests.append(user)
-        user.requests.append(friend)
-        db.session.commit()
-        flash("Friend request sent!")
+        if user not in friend.requests:
+            friend.sentrequests.append(user)
+            user.requests.append(friend)
+            flash("Friend request sent!")
+            db.session.commit()
+        else:
+          flash("User already sent you a friend request!")
         return redirect(url_for('friends'))
     
     @app.route('/removefriend/<user_id>')
@@ -289,12 +292,16 @@ def create_view(app):
         friend = User.query.filter_by(id=user_id).first()
         if user in friend.sentrequests:
           friend.sentrequests.remove(user)
-          friend.requests.remove(user)
         if friend in user.requests:
           user.requests.remove(friend)
+        if friend in user.sentrequests:
+          user.sentrequests.remove(friend)
+        if user in friend.requests:
           friend.requests.remove(user)
-        user.friends.remove(friend)
-        friend.friends.remove(user)
+        if friend in user.friends:
+          user.friends.remove(friend)
+        if user in friend.friends:
+          friend.friends.remove(user)
         db.session.commit()
         flash("User has been removed from your friends!")
         return redirect(url_for('friends'))
@@ -305,6 +312,7 @@ def create_view(app):
         user = User.query.filter_by(email=email).first()
         friend = User.query.filter_by(id=user_id).first()
         user.sentrequests.remove(friend)
+        friend.requests.remove(user)
         user.friends.append(friend)
         friend.friends.append(user)
         db.session.commit()
